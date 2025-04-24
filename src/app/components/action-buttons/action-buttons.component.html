@@ -1,0 +1,13 @@
+<div class="action-buttons-container">
+    <div class="action-buttons-grid">
+      <a *ngFor="let button of actionButtons" 
+         [routerLink]="button.route" 
+         class="action-button"
+         [ngClass]="'button-' + button.color">
+        <div class="button-icon">
+          <mat-icon>{{ button.icon }}</mat-icon>
+        </div>
+        <div class="button-label">{{ button.label }}</div>
+      </a>
+    </div>
+  </div>

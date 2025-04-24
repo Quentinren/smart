@@ -1,0 +1,11 @@
+<div class="maps-container">
+  <div class="maps-grid">
+    <div class="map-card" *ngFor="let map of maps">
+      <div class="map-title">{{ map.title }}</div>
+      <div class="map-image">
+        <!-- We'd use actual map images in production -->
+        <img src="{{ map.image }}" alt="{{ map.title }}" />
+      </div>
+    </div>
+  </div>
+</div>

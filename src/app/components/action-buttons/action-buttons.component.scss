@@ -1,0 +1,89 @@
+@import '../../../assets/styles/variables';
+@import '../../../assets/styles/fonts';
+
+.action-buttons-container {
+  padding: $spacing-md 0 $spacing-xl;
+  
+  .action-buttons-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: $spacing-md;
+    
+    @media (max-width: $breakpoint-sm) {
+      grid-template-columns: 1fr;
+    }
+    
+    .action-button {
+      display: flex;
+      align-items: center;
+      gap: $spacing-md;
+      padding: $spacing-md $spacing-lg;
+      border-radius: 6px;
+      text-decoration: none;
+      transition: all 0.2s ease;
+      
+      &.button-primary {
+        background-color: rgba($color-primary, 0.1);
+        border: 1px solid rgba($color-primary, 0.3);
+        
+        .button-icon {
+          color: $color-primary;
+        }
+        
+        .button-label {
+          color: $color-primary;
+        }
+        
+        &:hover {
+          background-color: rgba($color-primary, 0.2);
+        }
+      }
+      
+      &.button-accent {
+        background-color: rgba($color-secondary, 0.1);
+        border: 1px solid rgba($color-secondary, 0.3);
+        
+        .button-icon {
+          color: $color-secondary;
+        }
+        
+        .button-label {
+          color: $color-secondary;
+        }
+        
+        &:hover {
+          background-color: rgba($color-secondary, 0.2);
+        }
+      }
+      
+      &.button-warn {
+        background-color: rgba($color-warn, 0.1);
+        border: 1px solid rgba($color-warn, 0.3);
+        
+        .button-icon {
+          color: $color-warn;
+        }
+        
+        .button-label {
+          color: $color-warn;
+        }
+        
+        &:hover {
+          background-color: rgba($color-warn, 0.2);
+        }
+      }
+      
+      .button-icon {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      
+      .button-label {
+        font-family: $font-primary;
+        font-weight: $font-weight-medium;
+        font-size: $font-size-base;
+      }
+    }
+  }
+}

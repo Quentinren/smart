@@ -1,0 +1,50 @@
+@import '../../../assets/styles/variables';
+@import '../../../assets/styles/fonts';
+
+.table-responsive {
+  overflow-x: auto;
+  margin-bottom: $spacing-lg;
+  
+  .limits-table {
+    width: 100%;
+    background-color: white;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    
+    th.mat-header-cell {
+      font-family: $font-primary;
+      font-weight: $font-weight-medium;
+      color: $color-text;
+    }
+    
+    .mat-header-cell, .mat-cell {
+      padding: $spacing-sm $spacing-md;
+      text-align: left;
+      
+      &:first-child {
+        padding-left: $spacing-lg;
+      }
+      
+      &:last-child {
+        padding-right: $spacing-lg;
+      }
+    }
+    
+    .status-icon {
+      color: $color-primary;
+      cursor: pointer;
+      
+      &.status-unchecked {
+        color: $color-text-light;
+      }
+    }
+    
+    .mat-row:nth-child(even) {
+      background-color: rgba(0, 0, 0, 0.02);
+    }
+    
+    .mat-row:hover {
+      background-color: rgba($color-primary, 0.05);
+    }
+  }
+}

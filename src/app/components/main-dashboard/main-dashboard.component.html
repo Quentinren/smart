@@ -1,0 +1,46 @@
+<div class="dashboard-container">
+  <div class="dashboard-header">
+    <div class="section-info">
+      <h1 class="section-title">{{ currentSection }}</h1>
+      <div class="last-update">Dernier rafraîchissement : {{ lastUpdate }}</div>
+    </div>
+    
+    <div class="action-buttons">
+      <button mat-stroked-button color="primary">
+        <mat-icon>file_download</mat-icon>
+        Exporter les données
+      </button>
+      <button mat-stroked-button color="primary">
+        <mat-icon>info</mat-icon>
+        Définitions
+      </button>
+    </div>
+  </div>
+  
+  <div class="dashboard-content">
+    <!-- Tabs for different views -->
+    <mat-tab-group class="dashboard-tabs">
+      <mat-tab label="INTRA J">
+        <app-vigilance-info></app-vigilance-info>
+      </mat-tab>
+      <mat-tab label="J+1">
+        <div class="tab-content">
+          Contenu pour J+1
+        </div>
+      </mat-tab>
+      <mat-tab label="J+2 à J+5">
+        <div class="tab-content">
+          Contenu pour J+2 à J+5
+        </div>
+      </mat-tab>
+    </mat-tab-group>
+    
+    <!-- Map display section -->
+    <div class="map-section">
+      <app-map-display></app-map-display>
+    </div>
+    
+    <!-- Bottom action buttons -->
+    <app-action-buttons></app-action-buttons>
+  </div>
+</div>

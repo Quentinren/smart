@@ -1,0 +1,45 @@
+@import '../../../assets/styles/variables';
+@import '../../../assets/styles/fonts';
+
+.sidebar-container {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  
+  .sidebar-header {
+    padding: $spacing-lg;
+    display: flex;
+    align-items: center;
+    
+    .logo {
+      font-family: $font-primary;
+      font-size: $font-size-xl;
+      font-weight: $font-weight-bold;
+      color: $color-primary;
+    }
+  }
+  
+  .sidebar-nav {
+    .mat-mdc-list-item {
+      margin: $spacing-xs 0;
+      
+      &.active-link {
+        background-color: rgba($color-primary, 0.1);
+        
+        .nav-icon, .nav-text {
+          color: $color-primary;
+          font-weight: $font-weight-medium;
+        }
+      }
+      
+      .nav-icon {
+        margin-right: $spacing-md;
+        color: $color-text-light;
+      }
+      
+      .nav-text {
+        color: $color-text;
+      }
+    }
+  }
+}

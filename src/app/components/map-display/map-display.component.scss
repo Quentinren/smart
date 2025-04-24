@@ -1,0 +1,45 @@
+@import '../../../assets/styles/variables';
+@import '../../../assets/styles/fonts';
+
+.maps-container {
+  padding: $spacing-md 0;
+  
+  .maps-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: $spacing-lg;
+    
+    @media (max-width: $breakpoint-sm) {
+      grid-template-columns: 1fr;
+    }
+    
+    .map-card {
+      background-color: white;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      overflow: hidden;
+      
+      .map-title {
+        padding: $spacing-md;
+        font-family: $font-primary;
+        font-weight: $font-weight-medium;
+        font-size: $font-size-sm;
+        text-align: center;
+        background-color: #f5f5f5;
+        color: $color-text;
+      }
+      
+      .map-image {
+        padding: $spacing-md;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        
+        img {
+          max-width: 100%;
+          height: auto;
+        }
+      }
+    }
+  }
+}

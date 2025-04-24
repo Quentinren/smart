@@ -1,0 +1,71 @@
+/* Import Angular Material theming */
+@use '@angular/material' as mat;
+
+/* Import our custom variables and styles */
+@import 'assets/styles/variables';
+@import 'assets/styles/fonts';
+
+/* Include the common styles for Angular Material */
+@include mat.core();
+
+/* Define a custom theme */
+$smart-primary: mat.define-palette(mat.$green-palette, 700);
+$smart-accent: mat.define-palette(mat.$amber-palette, 500);
+$smart-warn: mat.define-palette(mat.$red-palette, 500);
+
+/* Define the typography */
+$smart-typography: mat.define-typography-config(
+  $font-family: $font-secondary,
+);
+
+/* Create the theme */
+$smart-theme: mat.define-light-theme((
+  color: (
+    primary: $smart-primary,
+    accent: $smart-accent,
+    warn: $smart-warn,
+  ),
+  typography: $smart-typography,
+  density: 0,
+));
+
+/* Apply the theme */
+@include mat.all-component-themes($smart-theme);
+
+/* Global styles */
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  font-family: $font-secondary;
+  color: $color-text;
+}
+
+body {
+  background-color: $color-background;
+}
+
+/* Utility classes */
+.container {
+  padding: $spacing-md;
+  max-width: 1440px;
+  margin: 0 auto;
+  
+  @media (max-width: $breakpoint-sm) {
+    padding: $spacing-sm;
+  }
+}
+
+.section {
+  margin-bottom: $spacing-lg;
+}
+
+.card {
+  background: white;
+  border-radius: 4px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: $spacing-md;
+  margin-bottom: $spacing-md;
+}
+
+/* Etc... le reste de votre CSS */
