@@ -9,7 +9,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding:var(--spacing-md var(--spacing-lg);
+    padding: $spacing-md $spacing-lg; /* Fixed this line - was missing a colon */
     background-color: white;
     
     @media (max-width: $breakpoint-sm) {
@@ -49,13 +49,13 @@
           font-weight: $font-weight-medium;
           
           &.active {
-            color: var(--color-primary);
-            font-weight: var(--font-weight-semibold);
+            color: $color-primary;
+            font-weight: $font-weight-semibold;
           }
         }
         
         .divider {
-          color: var(--color-text-light);
+          color: $color-text-light;
           margin: 0 $spacing-xs;
         }
       }
@@ -63,7 +63,7 @@
   }
   
   .main-nav {
-    background-color: var(--color-navbar);
+    background-color: $color-navbar; /* Fixed this - was var(--color-navbar) */
     padding: 0 $spacing-lg;
     overflow-x: auto;
     
@@ -78,7 +78,7 @@
       display: flex;
       flex-wrap: nowrap;
       
-      @media (max-width: var(--breakpoint-md)) {
+      @media (max-width: $breakpoint-md) { /* Fixed this - was var(--breakpoint-md) */
         overflow-x: auto;
         -webkit-overflow-scrolling: touch;
       }
@@ -86,13 +86,13 @@
       .nav-item {
         .nav-link {
           display: block;
-          padding: var(--spacing-md);
+          padding: $spacing-md; /* Fixed this - was var(--spacing-md) */
           color: white;
           text-decoration: none;
           white-space: nowrap;
           transition: background-color 0.2s;
-          font-family: var(--font-primary);
-          font-weight: var(--font-weight-medium);
+          font-family: $font-primary; /* Fixed this - was var(--font-primary) */
+          font-weight: $font-weight-medium; /* Fixed this - was var(--font-weight-medium) */
           
           &:hover, &.active {
             background-color: rgba(255, 255, 255, 0.2);

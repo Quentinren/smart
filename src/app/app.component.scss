@@ -1,19 +1,22 @@
+@import '../assets/styles/variables';
+@import '../assets/styles/fonts';
+
 .sidenav-container {
-    height: 100%;
-  }
+  height: 100%;
+}
   
-  .sidenav {
-    width: 250px;
-    background-color: var(--color-sidebar);
-    box-shadow: 1px 0 5px rgba(0, 0, 0, 0.1);
-  }
+.sidenav {
+  width: 250px;
+  background-color: var(--color-sidebar);
+  box-shadow: 1px 0 5px rgba(0, 0, 0, 0.1);
+}
   
+.main-content {
+  padding: $spacing-md;
+}
+  
+@media (max-width: $breakpoint-sm) {
   .main-content {
-    padding: var(--spacing-md);
+    padding: $spacing-sm;
   }
-  
-  @media (max-width: 768px) {
-    .main-content {
-      padding: var(--spacing-sm);
-    }
-  }
+}

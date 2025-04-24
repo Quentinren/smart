@@ -1,5 +1,25 @@
-/* Import Angular Material prebuilt theme */
-@import '@angular/material/prebuilt-themes/indigo-pink.css';
+/* Import Angular Material theming */
+@use '@angular/material' as mat;
+@include mat.core();
+
+/* Define the theme palettes */
+$smart-primary: mat.define-palette(mat.$green-palette, 800);
+$smart-accent: mat.define-palette(mat.$amber-palette, 600);
+$smart-warn: mat.define-palette(mat.$red-palette, 500);
+
+/* Create the theme */
+$smart-theme: mat.define-light-theme((
+  color: (
+    primary: $smart-primary,
+    accent: $smart-accent,
+    warn: $smart-warn,
+  ),
+  typography: mat.define-typography-config(),
+  density: 0,
+));
+
+/* Apply the theme */
+@include mat.all-component-themes($smart-theme);
 
 /* Variables globales */
 :root {
