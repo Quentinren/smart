@@ -4,7 +4,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
-import { FlexLayoutModule } from '@angular/flex-layout';
 
 // Angular Material imports
 import { MatToolbarModule } from '@angular/material/toolbar';
@@ -24,12 +23,6 @@ import { MatDividerModule } from '@angular/material/divider';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatChipsModule } from '@angular/material/chips';
-
-// Chart module
-import { NgChartsModule } from 'ng2-charts';
-
-// Font Awesome
-import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 // App Components
 import { AppComponent } from './app.component';
@@ -59,9 +52,8 @@ import { ActionButtonsComponent } from './components/action-buttons/action-butto
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    FlexLayoutModule,
     MatToolbarModule,
-    MatSidenavModule,
+    MatSidenavModule,  // Make sure this is included
     MatButtonModule,
     MatIconModule,
     MatListModule,
@@ -76,9 +68,7 @@ import { ActionButtonsComponent } from './components/action-buttons/action-butto
     MatDividerModule,
     MatProgressSpinnerModule,
     MatSnackBarModule,
-    MatChipsModule,
-    NgChartsModule,
-    FontAwesomeModule
+    MatChipsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
