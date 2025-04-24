@@ -9,7 +9,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: $spacing-md $spacing-lg;
+    padding:var(--spacing-md var(--spacing-lg);
     background-color: white;
     
     @media (max-width: $breakpoint-sm) {
@@ -49,13 +49,13 @@
           font-weight: $font-weight-medium;
           
           &.active {
-            color: $color-primary;
-            font-weight: $font-weight-semibold;
+            color: var(--color-primary);
+            font-weight: var(--font-weight-semibold);
           }
         }
         
         .divider {
-          color: $color-text-light;
+          color: var(--color-text-light);
           margin: 0 $spacing-xs;
         }
       }
@@ -63,7 +63,7 @@
   }
   
   .main-nav {
-    background-color: $color-navbar;
+    background-color: var(--color-navbar);
     padding: 0 $spacing-lg;
     overflow-x: auto;
     
@@ -78,7 +78,7 @@
       display: flex;
       flex-wrap: nowrap;
       
-      @media (max-width: $breakpoint-md) {
+      @media (max-width: var(--breakpoint-md)) {
         overflow-x: auto;
         -webkit-overflow-scrolling: touch;
       }
@@ -86,13 +86,13 @@
       .nav-item {
         .nav-link {
           display: block;
-          padding: $spacing-md;
+          padding: var(--spacing-md);
           color: white;
           text-decoration: none;
           white-space: nowrap;
           transition: background-color 0.2s;
-          font-family: $font-primary;
-          font-weight: $font-weight-medium;
+          font-family: var(--font-primary);
+          font-weight: var(--font-weight-medium);
           
           &:hover, &.active {
             background-color: rgba(255, 255, 255, 0.2);

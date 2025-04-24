@@ -1,71 +1,130 @@
-/* Import Angular Material theming */
-@use '@angular/material' as mat;
+/* Import Angular Material prebuilt theme */
+@import '@angular/material/prebuilt-themes/indigo-pink.css';
 
-/* Import our custom variables and styles */
-@import 'assets/styles/variables';
-@import 'assets/styles/fonts';
+/* Variables globales */
+:root {
+  --color-primary: #3e7056;
+  --color-secondary: #ffc600;
+  --color-accent: #2c5584;
+  --color-warn: #a13d47;
+  --color-info: #2b4b4d;
+  --color-background: #ffffff;
+  --color-navbar: #e4953a;
+  --color-sidebar: #f2f2f2;
+  --color-border: #dddddd;
+  --color-text: #333333;
+  --color-text-light: #666666;
+  --spacing-xs: 4px;
+  --spacing-sm: 8px;
+  --spacing-md: 16px;
+  --spacing-lg: 24px;
+  --spacing-xl: 32px;
+}
 
-/* Include the common styles for Angular Material */
-@include mat.core();
+/* Importation des polices */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
 
-/* Define a custom theme */
-$smart-primary: mat.define-palette(mat.$green-palette, 700);
-$smart-accent: mat.define-palette(mat.$amber-palette, 500);
-$smart-warn: mat.define-palette(mat.$red-palette, 500);
+/* Fonts */
+body {
+  font-family: 'Century Gothic', 'CenturyGothic', 'AppleGothic', 'Poppins', sans-serif;
+  margin: 0;
+  padding: 0;
+}
 
-/* Define the typography */
-$smart-typography: mat.define-typography-config(
-  $font-family: $font-secondary,
-);
-
-/* Create the theme */
-$smart-theme: mat.define-light-theme((
-  color: (
-    primary: $smart-primary,
-    accent: $smart-accent,
-    warn: $smart-warn,
-  ),
-  typography: $smart-typography,
-  density: 0,
-));
-
-/* Apply the theme */
-@include mat.all-component-themes($smart-theme);
+h1, h2, h3, h4, h5, h6, .mat-button, .mat-raised-button {
+  font-family: 'Poppins', sans-serif;
+}
 
 /* Global styles */
 html, body {
   height: 100%;
-  margin: 0;
-  padding: 0;
-  font-family: $font-secondary;
-  color: $color-text;
+  color: var(--color-text);
 }
 
 body {
-  background-color: $color-background;
+  background-color: var(--color-background);
 }
 
 /* Utility classes */
 .container {
-  padding: $spacing-md;
+  padding: var(--spacing-md);
   max-width: 1440px;
   margin: 0 auto;
-  
-  @media (max-width: $breakpoint-sm) {
-    padding: $spacing-sm;
-  }
 }
 
 .section {
-  margin-bottom: $spacing-lg;
+  margin-bottom: var(--spacing-lg);
 }
 
 .card {
   background: white;
   border-radius: 4px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  padding: $spacing-md;
-  margin-bottom: $spacing-md;
+  padding: var(--spacing-md);
+  margin-bottom: var(--spacing-md);
 }
 
-/* Etc... le reste de votre CSS */
+.text-center {
+  text-align: center;
+}
+
+.text-right {
+  text-align: right;
+}
+
+.flex-row {
+  display: flex;
+  flex-direction: row;
+}
+
+.flex-column {
+  display: flex;
+  flex-direction: column;
+}
+
+.flex-wrap {
+  flex-wrap: wrap;
+}
+
+.justify-between {
+  justify-content: space-between;
+}
+
+.items-center {
+  align-items: center;
+}
+
+.gap-sm {
+  gap: var(--spacing-sm);
+}
+
+.gap-md {
+  gap: var(--spacing-md);
+}
+
+.gap-lg {
+  gap: var(--spacing-lg);
+}
+
+.mb-sm {
+  margin-bottom: var(--spacing-sm);
+}
+
+.mb-md {
+  margin-bottom: var(--spacing-md);
+}
+
+.mb-lg {
+  margin-bottom: var(--spacing-lg);
+}
+
+/* Media queries */
+@media (max-width: 768px) {
+  .flex-row {
+    flex-direction: column;
+  }
+  
+  .container {
+    padding: var(--spacing-sm);
+  }
+}
