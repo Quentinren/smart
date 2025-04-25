@@ -17,32 +17,24 @@
   
   <nav class="main-nav">
     <ul class="nav-list">
-      <li class="nav-item">
-        <a class="nav-link" routerLink="/info-vigilance" routerLinkActive="active">Info Vigilance</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" routerLink="/programme-travaux" routerLinkActive="active">Programme Travaux</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" routerLink="/capacites" routerLinkActive="active">Capacités</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" routerLink="/flux" routerLinkActive="active">Flux</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" routerLink="/quantites-aval" routerLinkActive="active">Quantités Aval</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" routerLink="/equilibrage" routerLinkActive="active">Équilibrage</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" routerLink="/operateurs-connectes" routerLinkActive="active">Opérateurs Connectés</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" routerLink="/flexibilite-intraj" routerLinkActive="active">Flexibilité IntraJ</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" routerLink="/tarifs" routerLinkActive="active">Tarifs</a>
+      <li class="nav-item" *ngFor="let item of navItems">
+        <div class="nav-link-container">
+          <a class="nav-link" [routerLink]="item.route" routerLinkActive="active" (mouseenter)="openSubmenu(item)" (click)="onNavItemClick(item)">
+            {{item.name}}
+            <mat-icon *ngIf="item.submenu && item.submenu.length > 0" class="dropdown-icon">
+              keyboard_arrow_down
+            </mat-icon>
+          </a>
+          
+          <div class="dropdown-menu" *ngIf="item.submenu && item.submenu.length > 0 && item.showSubmenu" (mouseleave)="closeSubmenu(item)">
+            <a *ngFor="let submenu of item.submenu" 
+               class="dropdown-item" 
+               [routerLink]="submenu.route"
+               routerLinkActive="active-submenu">
+              {{submenu.name}}
+            </a>
+          </div>
+        </div>
       </li>
     </ul>
   </nav>

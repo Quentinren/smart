@@ -1,0 +1,158 @@
+@import '../../../assets/styles/variables';
+@import '../../../assets/styles/fonts';
+
+.programme-travaux-container {
+  padding: $spacing-md;
+  
+  .section-header {
+    margin-bottom: $spacing-lg;
+    
+    .section-title {
+      font-family: $font-primary;
+      font-size: $font-size-xl;
+      font-weight: $font-weight-semibold;
+      color: $color-text;
+      margin: 0;
+    }
+  }
+  
+  .filters-container {
+    background-color: white;
+    border-radius: 6px;
+    padding: $spacing-md;
+    margin-bottom: $spacing-lg;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    
+    .filters-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: $spacing-md;
+      align-items: center;
+      
+      @media (max-width: $breakpoint-md) {
+        flex-direction: column;
+        align-items: stretch;
+      }
+      
+      .filter-group {
+        flex: 1;
+        min-width: 150px;
+        
+        mat-form-field {
+          width: 100%;
+        }
+      }
+      
+      .filter-action {
+        button {
+          background-color: $color-navbar;
+          color: white;
+          font-weight: $font-weight-medium;
+          height: 56px;
+          padding: 0 $spacing-xl;
+        }
+      }
+    }
+  }
+  
+  .data-container {
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-lg;
+    
+    .chart-container {
+      background-color: white;
+      border-radius: 6px;
+      padding: $spacing-md;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+      height: auto;
+      min-height: 400px;
+      
+      h3 {
+        color: $color-text;
+        font-family: $font-primary;
+        font-weight: $font-weight-medium;
+        margin-top: 0;
+        margin-bottom: $spacing-md;
+      }
+      
+      .data-table {
+        width: 100%;
+        border-collapse: collapse;
+        
+        th, td {
+          padding: $spacing-sm $spacing-md;
+          text-align: left;
+          border-bottom: 1px solid $color-border;
+        }
+        
+        th {
+          font-weight: $font-weight-medium;
+          color: $color-text;
+          background-color: rgba(0, 0, 0, 0.02);
+        }
+        
+        tr:nth-child(even) {
+          background-color: rgba(0, 0, 0, 0.02);
+        }
+        
+        tr:hover {
+          background-color: rgba($color-primary, 0.05);
+        }
+      }
+      
+      ::ng-deep .ngx-charts {
+        float: none;
+      }
+    }
+    
+    .table-container {
+      table {
+        width: 100%;
+        
+        th.mat-header-cell {
+          font-weight: $font-weight-medium;
+          color: $color-text;
+        }
+      }
+    }
+  }
+  
+  .no-data-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: $spacing-xl 0;
+    min-height: 300px;
+    background-color: white;
+    border-radius: 6px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    
+    .no-data-icon {
+      margin-bottom: $spacing-md;
+      
+      img {
+        width: 80px;
+        height: 80px;
+      }
+    }
+    
+    .no-data-message {
+      text-align: center;
+      
+      .primary-message {
+        font-family: $font-primary;
+        font-weight: $font-weight-medium;
+        font-size: $font-size-md;
+        color: $color-text;
+        margin-bottom: $spacing-xs;
+      }
+      
+      .secondary-message {
+        font-size: $font-size-sm;
+        color: $color-text-light;
+      }
+    }
+  }
+}

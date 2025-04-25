@@ -5,12 +5,29 @@
   
   <mat-divider></mat-divider>
   
-  <mat-nav-list class="sidebar-nav">
-    <a mat-list-item *ngFor="let item of sidebarItems" 
-       [routerLink]="item.route" 
-       routerLinkActive="active-link">
-      <mat-icon class="nav-icon">{{item.icon}}</mat-icon>
-      <span class="nav-text">{{item.name}}</span>
-    </a>
-  </mat-nav-list>
+  <div class="sidebar-nav">
+    <div *ngFor="let item of sidebarItems" class="nav-item-container">
+      <div class="nav-item" 
+           [class.active]="item.route === activeRoute || isSubmenuActive(item)"
+           (click)="toggleSubmenu(item)">
+        <div class="nav-item-content">
+          <mat-icon class="nav-icon">{{item.icon}}</mat-icon>
+          <span class="nav-text">{{item.name}}</span>
+        </div>
+        <mat-icon class="expand-icon" *ngIf="item.submenu && item.submenu.length > 0">
+          {{item.expanded ? 'keyboard_arrow_down' : 'keyboard_arrow_right'}}
+        </mat-icon>
+      </div>
+      
+      <div class="submenu" *ngIf="item.submenu && item.submenu.length > 0 && item.expanded">
+        <a *ngFor="let submenu of item.submenu"
+           class="submenu-item"
+           [class.active]="submenu.route === activeRoute"
+           [routerLink]="submenu.route" 
+           routerLinkActive="active-submenu">
+          {{submenu.name}}
+        </a>
+      </div>
+    </div>
+  </div>
 </div>

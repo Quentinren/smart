@@ -20,25 +20,75 @@
   }
   
   .sidebar-nav {
-    .mat-mdc-list-item {
-      margin: $spacing-xs 0;
+    overflow-y: auto;
+    
+    .nav-item-container {
+      display: flex;
+      flex-direction: column;
       
-      &.active-link {
-        background-color: rgba($color-primary, 0.1);
+      .nav-item {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: $spacing-sm $spacing-md;
+        cursor: pointer;
+        transition: background-color 0.2s ease;
         
-        .nav-icon, .nav-text {
-          color: $color-primary;
-          font-weight: $font-weight-medium;
+        &.active {
+          background-color: rgba($color-navbar, 0.1);
+          
+          .nav-icon, .nav-text {
+            color: $color-navbar;
+            font-weight: $font-weight-medium;
+          }
+        }
+        
+        &:hover {
+          background-color: rgba($color-navbar, 0.05);
+        }
+        
+        .nav-item-content {
+          display: flex;
+          align-items: center;
+          
+          .nav-icon {
+            margin-right: $spacing-md;
+            color: $color-text-light;
+          }
+          
+          .nav-text {
+            color: $color-text;
+            font-weight: $font-weight-regular;
+          }
+        }
+        
+        .expand-icon {
+          color: $color-text-light;
+          font-size: 20px;
         }
       }
       
-      .nav-icon {
-        margin-right: $spacing-md;
-        color: $color-text-light;
-      }
-      
-      .nav-text {
-        color: $color-text;
+      .submenu {
+        display: flex;
+        flex-direction: column;
+        background-color: $color-secondary;
+        
+        .submenu-item {
+          padding: $spacing-sm $spacing-md $spacing-sm $spacing-xl;
+          color: white;
+          text-decoration: none;
+          font-size: $font-size-sm;
+          transition: background-color 0.2s ease;
+          border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+          
+          &:hover, &.active {
+            background-color: rgba(255, 255, 255, 0.2);
+          }
+          
+          &:last-child {
+            border-bottom: none;
+          }
+        }
       }
     }
   }

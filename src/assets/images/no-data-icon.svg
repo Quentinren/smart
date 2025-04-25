@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="80" height="80" viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">
+  <!-- Gear Icon -->
+  <circle cx="40" cy="40" r="30" fill="none" stroke="#e4953a" stroke-width="2" />
+  
+  <!-- Gear Teeth -->
+  <path d="M40,10 L40,16" stroke="#e4953a" stroke-width="2" />
+  <path d="M40,64 L40,70" stroke="#e4953a" stroke-width="2" />
+  <path d="M10,40 L16,40" stroke="#e4953a" stroke-width="2" />
+  <path d="M64,40 L70,40" stroke="#e4953a" stroke-width="2" />
+  <path d="M19.3,19.3 L23.4,23.4" stroke="#e4953a" stroke-width="2" />
+  <path d="M56.6,56.6 L60.7,60.7" stroke="#e4953a" stroke-width="2" />
+  <path d="M19.3,60.7 L23.4,56.6" stroke="#e4953a" stroke-width="2" />
+  <path d="M56.6,23.4 L60.7,19.3" stroke="#e4953a" stroke-width="2" />
+  
+  <!-- Clock Hands -->
+  <path d="M40,40 L40,25" stroke="#e4953a" stroke-width="2" />
+  <path d="M40,40 L50,45" stroke="#e4953a" stroke-width="2" />
+  
+  <!-- Center Circle -->
+  <circle cx="40" cy="40" r="3" fill="#e4953a" />
+  
+  <!-- Bar Chart Icon -->
+  <rect x="25" y="50" width="6" height="10" fill="#3e7056" rx="1" />
+  <rect x="35" y="45" width="6" height="15" fill="#3e7056" rx="1" />
+  <rect x="45" y="40" width="6" height="20" fill="#3e7056" rx="1" />
+</svg>
