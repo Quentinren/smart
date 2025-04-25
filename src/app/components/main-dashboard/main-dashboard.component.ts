@@ -26,7 +26,12 @@ import { ActionButtonsComponent } from '../action-buttons/action-buttons.compone
 export class MainDashboardComponent {
   currentDate = new Date();
   lastUpdate = '25/04/2025 16:06';
-  selectedPeriod: string = ''; // ou tout autre type approprié
+  selectedPeriod: string = 'intra-j'; // Add this
+  
+  // Add this method
+  changePeriod(period: string): void {
+    this.selectedPeriod = period;
+  }
   
   constructor(private router: Router) {}
   
