@@ -23,25 +23,25 @@ export class ActionButtonsComponent {
       icon: 'warning', 
       label: 'Déséquilibre fin de journée', 
       color: 'accent',
-      route: '/desequilibre'
+      route: '/equilibrage/position-desequilibre-final'
     },
     { 
       icon: 'info', 
       label: 'SEC projeté', 
       color: 'primary',
-      route: '/sec-projete'
+      route: '/equilibrage/stock-conduite-projete'
     },
     { 
       icon: 'map', 
       label: 'Référentiel des limites', 
       color: 'warn',
-      route: '/referentiel-limites'
+      route: '/info-vigilance'
     },
     { 
       icon: 'trending_up', 
       label: 'Spread localisé', 
       color: 'accent',
-      route: '/spread-localise'
+      route: '/info-vigilance'
     }
   ];
 }
