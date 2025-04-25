@@ -1,9 +1,12 @@
 import { Component } from '@angular/core';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-map-display',
   templateUrl: './map-display.component.html',
-  styleUrls: ['./map-display.component.scss']
+  styleUrls: ['./map-display.component.scss'],
+  standalone: true,
+  imports: [CommonModule]
 })
 export class MapDisplayComponent {
   maps = [

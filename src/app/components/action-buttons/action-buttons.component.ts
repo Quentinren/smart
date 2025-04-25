@@ -1,4 +1,7 @@
 import { Component } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { MatIconModule } from '@angular/material/icon';
+import { RouterModule } from '@angular/router';
 
 interface ActionButton {
   icon: string;
@@ -10,7 +13,9 @@ interface ActionButton {
 @Component({
   selector: 'app-action-buttons',
   templateUrl: './action-buttons.component.html',
-  styleUrls: ['./action-buttons.component.scss']
+  styleUrls: ['./action-buttons.component.scss'],
+  standalone: true,
+  imports: [CommonModule, MatIconModule, RouterModule]
 })
 export class ActionButtonsComponent {
   actionButtons: ActionButton[] = [

@@ -26,24 +26,11 @@ import { MatChipsModule } from '@angular/material/chips';
 
 // App Components
 import { AppComponent } from './app.component';
-import { HeaderComponent } from './components/header/header.component';
-import { SidebarComponent } from './components/sidebar/sidebar.component';
-import { MainDashboardComponent } from './components/main-dashboard/main-dashboard.component';
-import { VigilanceInfoComponent } from './components/vigilance-info/vigilance-info.component';
-import { LimitsTableComponent } from './components/limits-table/limits-table.component';
-import { MapDisplayComponent } from './components/map-display/map-display.component';
-import { ActionButtonsComponent } from './components/action-buttons/action-buttons.component';
 
 @NgModule({
   declarations: [
-    AppComponent,
-    HeaderComponent,
-    SidebarComponent,
-    MainDashboardComponent,
-    VigilanceInfoComponent,
-    LimitsTableComponent,
-    MapDisplayComponent,
-    ActionButtonsComponent
+    AppComponent
+    // Removed standalone components from here
   ],
   imports: [
     BrowserModule,
@@ -53,7 +40,7 @@ import { ActionButtonsComponent } from './components/action-buttons/action-butto
     ReactiveFormsModule,
     HttpClientModule,
     MatToolbarModule,
-    MatSidenavModule,  // Make sure this is included
+    MatSidenavModule,
     MatButtonModule,
     MatIconModule,
     MatListModule,

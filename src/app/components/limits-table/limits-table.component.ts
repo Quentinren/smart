@@ -1,10 +1,15 @@
 import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
 import { Limit } from '../../shared/models/limit.model';
+import { CommonModule } from '@angular/common';
+import { MatTableModule } from '@angular/material/table';
+import { MatIconModule } from '@angular/material/icon';
 
 @Component({
   selector: 'app-limits-table',
   templateUrl: './limits-table.component.html',
-  styleUrls: ['./limits-table.component.scss']
+  styleUrls: ['./limits-table.component.scss'],
+  standalone: true,
+  imports: [CommonModule, MatTableModule, MatIconModule]
 })
 export class LimitsTableComponent implements OnInit {
   @Input() limits: Limit[] = [];
