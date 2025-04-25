@@ -1,46 +1,148 @@
-<div class="dashboard-container">
-  <div class="dashboard-header">
-    <div class="section-info">
-      <h1 class="section-title">{{ currentSection }}</h1>
-      <div class="last-update">Dernier rafraîchissement : {{ lastUpdate }}</div>
-    </div>
-    
-    <div class="action-buttons">
-      <button mat-stroked-button color="primary">
-        <mat-icon>file_download</mat-icon>
-        Exporter les données
-      </button>
-      <button mat-stroked-button color="primary">
-        <mat-icon>info</mat-icon>
-        Définitions
-      </button>
+<div class="vigilance-info-container">
+  <!-- Tabs for Different Time Periods -->
+  <div class="time-period-tabs">
+    <div class="tab" [class.active]="selectedPeriod === 'intra-j'" (click)="changePeriod('intra-j')">INTRA J</div>
+    <div class="tab" [class.active]="selectedPeriod === 'j-plus-1'" (click)="changePeriod('j-plus-1')">J+1</div>
+    <div class="tab" [class.active]="selectedPeriod === 'j-plus-2-5'" (click)="changePeriod('j-plus-2-5')">J+2 à J+5</div>
+  </div>
+
+  <!-- Table Section -->
+  <div class="table-responsive">
+    <!-- INTRA J Table -->
+    <table *ngIf="selectedPeriod === 'intra-j'" class="limits-table">
+      <thead>
+        <tr>
+          <th>Limite</th>
+          <th>Niveau de vigilance</th>
+          <th>Côté d'application</th>
+          <th>Travaux à petit impact (GWh 25°C)</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of currentPeriodLimits">
+          <td>{{ item.id }}</td>
+          <td class="center-cell">
+            <mat-icon *ngIf="item.checked" class="status-icon">check_circle</mat-icon>
+          </td>
+          <td>{{ item.side }}</td>
+          <td>{{ item.value || '' }}</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <!-- J+1 and J+2 à J+5 Table -->
+    <table *ngIf="selectedPeriod !== 'intra-j'" class="limits-table date-table">
+      <thead>
+        <tr>
+          <th>Limite</th>
+          <ng-container *ngIf="selectedPeriod === 'j-plus-1'">
+            <th>Niveau de vigilance</th>
+          </ng-container>
+          <ng-container *ngIf="selectedPeriod === 'j-plus-2-5'">
+            <th *ngFor="let date of futureDates">
+              {{ date | date:'dd/MM/yyyy' }}
+              <div class="column-label">Niveau de vigilance</div>
+            </th>
+          </ng-container>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of currentPeriodLimits">
+          <td>{{ item.id }}</td>
+          <ng-container *ngIf="selectedPeriod === 'j-plus-1'">
+            <td class="center-cell">
+              <div class="status-container">
+                <mat-icon *ngIf="item.checked" class="status-icon">check_circle</mat-icon>
+                <mat-icon *ngIf="item.hasWorks" class="works-icon">build</mat-icon>
+              </div>
+            </td>
+          </ng-container>
+          <ng-container *ngIf="selectedPeriod === 'j-plus-2-5'">
+            <td *ngFor="let status of item.futureStatus" class="center-cell">
+              <div class="status-container">
+                <mat-icon *ngIf="status.checked" class="status-icon">check_circle</mat-icon>
+                <mat-icon *ngIf="status.hasWorks" class="works-icon">build</mat-icon>
+                <div *ngIf="status.planned" class="planned-container">
+                  <mat-icon class="planned-icon">help</mat-icon>
+                  <mat-icon class="cone-icon">safety_cone</mat-icon>
+                </div>
+              </div>
+            </td>
+          </ng-container>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Maps Section -->
+  <div class="maps-container">
+    <div class="maps-grid">
+      <div class="map-card">
+        <div class="map-title">{{ mapTitles.northSouth }}</div>
+        <div class="map-image">
+          <img src="assets/images/france-map-nord-sud.svg" alt="Carte des limites Nord-Sud et Est-Ouest" />
+        </div>
+      </div>
+      <div class="map-card">
+        <div class="map-title">{{ mapTitles.southNorth }}</div>
+        <div class="map-image">
+          <img src="assets/images/france-map-sud-nord.svg" alt="Carte des limites Sud-Nord" />
+        </div>
+      </div>
     </div>
   </div>
   
-  <div class="dashboard-content">
-    <!-- Tabs for different views -->
-    <mat-tab-group class="dashboard-tabs">
-      <mat-tab label="INTRA J">
-        <app-vigilance-info></app-vigilance-info>
-      </mat-tab>
-      <mat-tab label="J+1">
-        <div class="tab-content">
-          Contenu pour J+1
-        </div>
-      </mat-tab>
-      <mat-tab label="J+2 à J+5">
-        <div class="tab-content">
-          Contenu pour J+2 à J+5
-        </div>
-      </mat-tab>
-    </mat-tab-group>
-    
-    <!-- Map display section -->
-    <div class="map-section">
-      <app-map-display></app-map-display>
+  <!-- Legend Section -->
+  <div class="legend-container">
+    <div class="legend-item">
+      <div class="legend-icon">
+        <mat-icon>check_circle</mat-icon>
+      </div>
+      <div class="legend-text">Surveillance active</div>
     </div>
-    
-    <!-- Bottom action buttons -->
-    <app-action-buttons></app-action-buttons>
+    <div class="legend-item">
+      <div class="legend-icon">
+        <mat-icon>build</mat-icon>
+      </div>
+      <div class="legend-text">Travaux à petit impact</div>
+    </div>
+    <div class="legend-item">
+      <div class="legend-icon">
+        <mat-icon>safety_cone</mat-icon>
+      </div>
+      <div class="legend-text">Maintenance programmée</div>
+    </div>
+  </div>
+
+  <!-- Footer Section with Last Update and Definitions -->
+  <div class="page-footer">
+    <div class="last-update">{{ lastUpdateLabel }}: {{ lastUpdate }}</div>
+    <button mat-button color="primary" (click)="toggleDefinitions()">
+      <mat-icon>info</mat-icon>
+      {{ definitionsLabel }}
+    </button>
+  </div>
+
+  <!-- Definitions Panel (In-page) -->
+  <div class="definitions-panel-wrapper" [class.visible]="showDefinitions">
+    <div class="definitions-panel">
+      <div class="panel-header">
+        <h3>{{ definitionsLabel }}</h3>
+        <div class="language-selector">
+          <button mat-button [class.active]="currentLang === 'fr'" (click)="changeLanguage('fr')">FR</button>
+          <span class="divider">|</span>
+          <button mat-button [class.active]="currentLang === 'en'" (click)="changeLanguage('en')">EN</button>
+        </div>
+        <button mat-icon-button (click)="toggleDefinitions()">
+          <mat-icon>close</mat-icon>
+        </button>
+      </div>
+      <div class="panel-content">
+        <div class="definition-item" *ngFor="let def of definitions">
+          <h4>{{ def.title }}</h4>
+          <p>{{ def.description }}</p>
+        </div>
+      </div>
+    </div>
   </div>
 </div>

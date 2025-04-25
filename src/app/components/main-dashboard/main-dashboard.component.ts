@@ -25,7 +25,8 @@ import { ActionButtonsComponent } from '../action-buttons/action-buttons.compone
 })
 export class MainDashboardComponent {
   currentDate = new Date();
-  lastUpdate = '24/04/2025 16:06';
+  lastUpdate = '25/04/2025 16:06';
+  selectedPeriod: string = ''; // ou tout autre type approprié
   
   constructor(private router: Router) {}
   

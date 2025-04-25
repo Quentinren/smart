@@ -3,6 +3,7 @@ import { MainDashboardComponent } from './components/main-dashboard/main-dashboa
 import { ProgrammeTravauxComponent } from './components/programme-travaux/programme-travaux.component';
 import { VigilanceInfoComponent } from './components/vigilance-info/vigilance-info.component';
 import { StockConduiteProjecteComponent } from './components/stock-conduite-projete/stock-conduite-projete.component';
+import { FlexibiliteIntrajComponent } from './components/flexibilite-intraj/flexibilite-intraj.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'info-vigilance', pathMatch: 'full' },
@@ -48,7 +49,9 @@ export const routes: Routes = [
   { path: 'operateurs-connectes/telsf', component: MainDashboardComponent },
   { path: 'operateurs-connectes/storengy', component: MainDashboardComponent },
   
-  { path: 'flexibilite-intraj', component: MainDashboardComponent },
+  // Flexibilité IntraJ route
+  { path: 'flexibilite-intraj', component: FlexibiliteIntrajComponent },
+  
   { path: 'tarifs', component: MainDashboardComponent },
   
   // Wildcard route - redirect to home

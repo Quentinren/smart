@@ -1,80 +1,319 @@
 @import '../../../assets/styles/variables';
 @import '../../../assets/styles/fonts';
 
-.dashboard-container {
-  max-width: 1400px;
-  margin: 0 auto;
+.vigilance-info-container {
+  padding: $spacing-md 0;
+  position: relative;
   
-  .dashboard-header {
+  // Time Period Tabs
+  .time-period-tabs {
     display: flex;
-    justify-content: space-between;
-    align-items: center;
+    margin-bottom: $spacing-md;
+    border-bottom: 1px solid $color-border;
+    
+    .tab {
+      padding: $spacing-sm $spacing-lg;
+      cursor: pointer;
+      color: $color-text;
+      font-weight: $font-weight-medium;
+      transition: all 0.2s ease;
+      position: relative;
+      
+      &:after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        height: 3px;
+        background-color: transparent;
+      }
+      
+      &.active {
+        color: $color-primary;
+        
+        &:after {
+          background-color: $color-primary;
+        }
+      }
+      
+      &:hover:not(.active) {
+        background-color: rgba(0, 0, 0, 0.05);
+      }
+    }
+  }
+  
+  .table-responsive {
+    overflow-x: auto;
     margin-bottom: $spacing-lg;
     
-    @media (max-width: $breakpoint-sm) {
-      flex-direction: column;
-      align-items: flex-start;
-      gap: $spacing-md;
-    }
-    
-    .section-info {
-      .section-title {
-        font-family: $font-primary;
-        font-size: $font-size-xl;
-        font-weight: $font-weight-semibold;
-        margin: 0;
-        margin-bottom: $spacing-xs;
-        color: $color-primary;
+    .limits-table {
+      width: 100%;
+      background-color: white;
+      border-collapse: collapse;
+      border-radius: 4px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+      
+      th {
+        text-align: left;
+        padding: $spacing-sm $spacing-md;
+        color: $color-text;
+        font-weight: $font-weight-medium;
+        border-bottom: 1px solid $color-border;
+        background-color: #f8f8f8;
+        
+        .column-label {
+          font-size: $font-size-xs;
+          color: $color-text-light;
+          font-weight: $font-weight-regular;
+          margin-top: 2px;
+        }
       }
       
-      .last-update {
-        color: $color-text-light;
-        font-size: $font-size-sm;
+      td {
+        padding: $spacing-sm $spacing-md;
+        border-bottom: 1px solid $color-border;
+        color: $color-text;
+        font-weight: $font-weight-regular;
+        
+        &.center-cell {
+          text-align: center;
+        }
+      }
+      
+      .status-container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: $spacing-xs;
+      }
+      
+      .status-icon {
+        color: #4CAF50;
+        font-size: 20px;
+        width: 20px;
+        height: 20px;
+      }
+      
+      .works-icon {
+        color: #FF9800;
+        font-size: 18px;
+        width: 18px;
+        height: 18px;
+      }
+      
+      .planned-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        
+        .planned-icon {
+          color: #9E9E9E;
+          font-size: 18px;
+          width: 18px;
+          height: 18px;
+        }
+        
+        .cone-icon {
+          color: #FF5722;
+          font-size: 18px;
+          width: 18px;
+          height: 18px;
+          margin-top: -8px;
+        }
+      }
+      
+      tr:nth-child(even) {
+        background-color: rgba(0, 0, 0, 0.02);
+      }
+      
+      tr:hover {
+        background-color: rgba($color-primary, 0.05);
+      }
+      
+      &.date-table {
+        th {
+          text-align: center;
+        }
       }
     }
+  }
+
+  // Maps styling
+  .maps-container {
+    margin: $spacing-lg 0;
     
-    .action-buttons {
-      display: flex;
-      gap: $spacing-md;
+    .maps-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: $spacing-lg;
       
       @media (max-width: $breakpoint-sm) {
-        width: 100%;
-        justify-content: space-between;
+        grid-template-columns: 1fr;
       }
       
-      button {
-        mat-icon {
-          margin-right: $spacing-xs;
+      .map-card {
+        background-color: white;
+        border-radius: 8px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        overflow: hidden;
+        
+        .map-title {
+          padding: $spacing-md;
+          font-weight: $font-weight-medium;
+          font-size: $font-size-sm;
+          text-align: center;
+          background-color: #f5f5f5;
+          color: $color-text;
+        }
+        
+        .map-image {
+          padding: $spacing-md;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          
+          img {
+            max-width: 100%;
+            height: auto;
+          }
         }
       }
     }
   }
   
-  .dashboard-content {
+  .legend-container {
     display: flex;
-    flex-direction: column;
-    gap: $spacing-lg;
+    gap: $spacing-xl;
+    padding: $spacing-md;
+    margin-bottom: $spacing-lg;
     
-    .dashboard-tabs {
-      ::ng-deep .mat-mdc-tab-header {
-        border-bottom: 1px solid $color-border;
-      }
-      
-      ::ng-deep .mat-mdc-tab-label {
-        font-family: $font-primary;
-        font-weight: $font-weight-medium;
-      }
-      
-      .tab-content {
-        padding: $spacing-lg;
-      }
-    }
-    
-    .map-section {
-      display: flex;
+    @media (max-width: $breakpoint-sm) {
       flex-direction: column;
       gap: $spacing-md;
-      margin-top: $spacing-lg;
+    }
+    
+    .legend-item {
+      display: flex;
+      align-items: center;
+      gap: $spacing-sm;
+      
+      .legend-icon {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        
+        mat-icon {
+          font-size: 20px;
+          height: 20px;
+          width: 20px;
+          
+          &:first-child {
+            color: #4CAF50;
+          }
+        }
+      }
+      
+      .legend-text {
+        font-size: $font-size-sm;
+        color: $color-text;
+      }
+    }
+  }
+  
+  // Footer styling
+  .page-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: $spacing-md 0;
+    border-top: 1px solid $color-border;
+    
+    .last-update {
+      color: $color-text-light;
+      font-size: $font-size-sm;
+    }
+  }
+  
+  // Definitions panel styling (in-page)
+  .definitions-panel-wrapper {
+    height: 0;
+    overflow: hidden;
+    transition: height 0.3s ease;
+    margin-top: $spacing-md;
+    
+    &.visible {
+      height: auto;
+      max-height: 500px;
+    }
+    
+    .definitions-panel {
+      background-color: white;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      overflow: hidden;
+      margin-bottom: $spacing-lg;
+      
+      .panel-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: $spacing-md $spacing-lg;
+        border-bottom: 1px solid $color-border;
+        background-color: #f8f8f8;
+        
+        h3 {
+          margin: 0;
+          color: $color-text;
+          font-weight: $font-weight-medium;
+        }
+        
+        .language-selector {
+          display: flex;
+          align-items: center;
+          
+          button {
+            min-width: 40px;
+            
+            &.active {
+              color: $color-primary;
+              font-weight: $font-weight-medium;
+            }
+          }
+          
+          .divider {
+            color: $color-text-light;
+            margin: 0 $spacing-xs;
+          }
+        }
+      }
+      
+      .panel-content {
+        padding: $spacing-lg;
+        max-height: 400px;
+        overflow-y: auto;
+        
+        .definition-item {
+          margin-bottom: $spacing-lg;
+          
+          &:last-child {
+            margin-bottom: 0;
+          }
+          
+          h4 {
+            margin-top: 0;
+            margin-bottom: $spacing-sm;
+            font-weight: $font-weight-medium;
+            color: $color-text;
+          }
+          
+          p {
+            margin: 0;
+            color: $color-text;
+            line-height: 1.5;
+          }
+        }
+      }
     }
   }
 }

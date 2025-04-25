@@ -1,9 +1,9 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { MainDashboardComponent } from './components/main-dashboard/main-dashboard.component';
 import { ProgrammeTravauxComponent } from './components/programme-travaux/programme-travaux.component';
 import { VigilanceInfoComponent } from './components/vigilance-info/vigilance-info.component';
 import { StockConduiteProjecteComponent } from './components/stock-conduite-projete/stock-conduite-projete.component';
+import { FlexibiliteIntrajComponent } from './components/flexibilite-intraj/flexibilite-intraj.component';
 
 const routes: Routes = [
   { path: '', component: VigilanceInfoComponent },
@@ -16,39 +16,39 @@ const routes: Routes = [
   { path: 'programme-travaux/super-points', component: ProgrammeTravauxComponent },
   { path: 'programme-travaux/carte-restriction', component: ProgrammeTravauxComponent },
   
-  // Other routes - use MainDashboardComponent as placeholder
-  { path: 'capacites', component: MainDashboardComponent },
-  { path: 'capacites/marche-primaire', component: MainDashboardComponent },
-  { path: 'capacites/marche-secondaire', component: MainDashboardComponent },
-  { path: 'capacites/marche-aval', component: MainDashboardComponent },
+  // Other routes - use VigilanceInfoComponent as placeholder
+  { path: 'capacites', component: VigilanceInfoComponent },
+  { path: 'capacites/marche-primaire', component: VigilanceInfoComponent },
+  { path: 'capacites/marche-secondaire', component: VigilanceInfoComponent },
+  { path: 'capacites/marche-aval', component: VigilanceInfoComponent },
   
-  { path: 'flux', component: MainDashboardComponent },
-  { path: 'flux/commerciaux', component: MainDashboardComponent },
-  { path: 'flux/physiques', component: MainDashboardComponent },
-  { path: 'flux/carte-quantites', component: MainDashboardComponent },
+  { path: 'flux', component: VigilanceInfoComponent },
+  { path: 'flux/commerciaux', component: VigilanceInfoComponent },
+  { path: 'flux/physiques', component: VigilanceInfoComponent },
+  { path: 'flux/carte-quantites', component: VigilanceInfoComponent },
   
-  { path: 'quantites-aval', component: MainDashboardComponent },
-  { path: 'quantites-aval/consommations', component: MainDashboardComponent },
-  { path: 'quantites-aval/production-biomethane', component: MainDashboardComponent },
+  { path: 'quantites-aval', component: VigilanceInfoComponent },
+  { path: 'quantites-aval/consommations', component: VigilanceInfoComponent },
+  { path: 'quantites-aval/production-biomethane', component: VigilanceInfoComponent },
   
-  { path: 'equilibrage', component: MainDashboardComponent },
-  { path: 'equilibrage/desequilibre-programme', component: MainDashboardComponent },
-  { path: 'equilibrage/soldes-desequilibres', component: MainDashboardComponent },
-  { path: 'equilibrage/bilan-es', component: MainDashboardComponent },
-  { path: 'equilibrage/stock-conduite', component: MainDashboardComponent },
+  { path: 'equilibrage', component: VigilanceInfoComponent },
+  { path: 'equilibrage/desequilibre-programme', component: VigilanceInfoComponent },
+  { path: 'equilibrage/soldes-desequilibres', component: VigilanceInfoComponent },
+  { path: 'equilibrage/bilan-es', component: VigilanceInfoComponent },
+  { path: 'equilibrage/stock-conduite', component: VigilanceInfoComponent },
   { path: 'equilibrage/stock-conduite-projete', component: StockConduiteProjecteComponent },
-  { path: 'equilibrage/prevision-clients-profiles', component: MainDashboardComponent },
-  { path: 'equilibrage/prix', component: MainDashboardComponent },
-  { path: 'equilibrage/position-desequilibre-final', component: MainDashboardComponent },
+  { path: 'equilibrage/prevision-clients-profiles', component: VigilanceInfoComponent },
+  { path: 'equilibrage/prix', component: VigilanceInfoComponent },
+  { path: 'equilibrage/position-desequilibre-final', component: VigilanceInfoComponent },
   
-  { path: 'operateurs-connectes', component: MainDashboardComponent },
-  { path: 'operateurs-connectes/elengy', component: MainDashboardComponent },
-  { path: 'operateurs-connectes/dunkerque-lng', component: MainDashboardComponent },
-  { path: 'operateurs-connectes/telsf', component: MainDashboardComponent },
-  { path: 'operateurs-connectes/storengy', component: MainDashboardComponent },
+  { path: 'operateurs-connectes', component: VigilanceInfoComponent },
+  { path: 'operateurs-connectes/elengy', component: VigilanceInfoComponent },
+  { path: 'operateurs-connectes/dunkerque-lng', component: VigilanceInfoComponent },
+  { path: 'operateurs-connectes/telsf', component: VigilanceInfoComponent },
+  { path: 'operateurs-connectes/storengy', component: VigilanceInfoComponent },
   
-  { path: 'flexibilite-intraj', component: MainDashboardComponent },
-  { path: 'tarifs', component: MainDashboardComponent },
+  { path: 'flexibilite-intraj', component: FlexibiliteIntrajComponent },
+  { path: 'tarifs', component: VigilanceInfoComponent },
   { path: '**', redirectTo: 'info-vigilance' }
 ];
 

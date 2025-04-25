@@ -1,0 +1,150 @@
+@import '../../../assets/styles/variables';
+@import '../../../assets/styles/fonts';
+
+.flexibilite-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: $spacing-md;
+  
+  // Header styling
+  .header-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: $spacing-lg;
+    
+    @media (max-width: $breakpoint-sm) {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: $spacing-md;
+    }
+    
+    .section-info {
+      .section-title {
+        font-family: $font-primary;
+        font-size: $font-size-xl;
+        font-weight: $font-weight-semibold;
+        margin: 0;
+        color: $color-primary;
+      }
+    }
+    
+    .action-buttons {
+      display: flex;
+      gap: $spacing-md;
+      
+      @media (max-width: $breakpoint-sm) {
+        width: 100%;
+        justify-content: space-between;
+      }
+      
+      button {
+        mat-icon {
+          margin-right: $spacing-xs;
+        }
+      }
+    }
+  }
+  
+  // Content container
+  .content-container {
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    padding: $spacing-md;
+    margin-bottom: $spacing-lg;
+    
+    .view-tabs {
+      ::ng-deep .mat-mdc-tab-header {
+        border-bottom: 1px solid $color-border;
+      }
+      
+      ::ng-deep .mat-mdc-tab-label {
+        font-family: $font-primary;
+        font-weight: $font-weight-medium;
+      }
+    }
+    
+    // Table styling
+    .table-container {
+      margin-top: $spacing-lg;
+      overflow-x: auto;
+      
+      .flexibilite-table {
+        width: 100%;
+        border-collapse: collapse;
+        
+        th, td {
+          border: 1px solid $color-border;
+          padding: $spacing-md;
+          text-align: center;
+          
+          &:first-child {
+            text-align: left;
+            font-weight: $font-weight-medium;
+          }
+        }
+        
+        th {
+          background-color: #f5f5f5;
+          font-weight: $font-weight-medium;
+          color: $color-text;
+        }
+        
+        .status-cell {
+          .status-indicator {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background-color: #f5f5f5;
+            border: 1px solid $color-border;
+            margin: 0 auto;
+            
+            &.active {
+              background-color: $color-primary;
+            }
+          }
+        }
+      }
+    }
+    
+    // Map styling
+    .map-visualization {
+      margin-top: $spacing-lg;
+      
+      .france-map {
+        max-width: 100%;
+        max-height: 700px;
+        margin: 0 auto;
+        
+        svg {
+          width: 100%;
+          height: auto;
+        }
+        
+        .region {
+          transition: all 0.3s ease;
+          
+          &:hover {
+            path {
+              fill: #e8f5e9;
+            }
+          }
+        }
+      }
+    }
+  }
+  
+  // Footer section
+  .footer-section {
+    display: flex;
+    justify-content: flex-end;
+    border-top: 1px solid $color-border;
+    padding-top: $spacing-md;
+    
+    .last-update {
+      color: $color-text-light;
+      font-size: $font-size-sm;
+    }
+  }
+}
