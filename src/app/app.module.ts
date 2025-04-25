@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { AppRoutingModule } from './app-routing.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 
@@ -25,23 +26,26 @@ import { MatDividerModule } from '@angular/material/divider';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatChipsModule } from '@angular/material/chips';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
 
 // App Components
 import { AppComponent } from './app.component';
 
 @NgModule({
   declarations: [
-    AppComponent
-    // Removed standalone components from here
+    // Standalone components are not declared here
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
-    AppComponent,
+    AppComponent, // Standalone component is imported
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule,
+    // Material Modules
     MatToolbarModule,
     MatSidenavModule,
     MatButtonModule,
@@ -58,7 +62,11 @@ import { AppComponent } from './app.component';
     MatDividerModule,
     MatProgressSpinnerModule,
     MatSnackBarModule,
-    MatChipsModule
+    MatChipsModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatFormFieldModule,
+    MatInputModule
   ],
   providers: [LimitsService],
   bootstrap: [AppComponent]

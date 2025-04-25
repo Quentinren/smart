@@ -8,6 +8,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatTabsModule } from '@angular/material/tabs';
 import { FormGroup, FormBuilder } from '@angular/forms';
 
 interface StockPoint {
@@ -20,6 +21,13 @@ interface ZoneDefinition {
   min: number;
   max: number;
   color: string;
+}
+
+interface RegionData {
+  name: string;
+  indicateurQPositif: boolean;
+  flexibilitePartielle: boolean;
+  indicateurQNegatif: boolean;
 }
 
 @Component({
@@ -37,7 +45,8 @@ interface ZoneDefinition {
     MatInputModule,
     MatButtonModule,
     MatIconModule,
-    MatTooltipModule
+    MatTooltipModule,
+    MatTabsModule
   ]
 })
 export class StockConduiteProjecteComponent implements OnInit {
@@ -50,6 +59,53 @@ export class StockConduiteProjecteComponent implements OnInit {
   currentValue = 2873.422;
   currentTime = '16:00';
   equilibriumStatus = 'Équilibré';
+  lastUpdate = new Date().toLocaleString('fr-FR', {
+    day: '2-digit',
+    month: '2-digit',
+    year: 'numeric',
+    hour: '2-digit',
+    minute: '2-digit'
+  });
+  
+  // Regions data
+  regions: RegionData[] = [
+    {
+      name: 'Nord',
+      indicateurQPositif: true,
+      flexibilitePartielle: true,
+      indicateurQNegatif: true
+    },
+    {
+      name: 'Île-de-France',
+      indicateurQPositif: true,
+      flexibilitePartielle: true,
+      indicateurQNegatif: true
+    },
+    {
+      name: 'Lorraine',
+      indicateurQPositif: true,
+      flexibilitePartielle: true,
+      indicateurQNegatif: true
+    },
+    {
+      name: 'Bretagne',
+      indicateurQPositif: true,
+      flexibilitePartielle: true,
+      indicateurQNegatif: true
+    },
+    {
+      name: 'Guyenne',
+      indicateurQPositif: true,
+      flexibilitePartielle: true,
+      indicateurQNegatif: true
+    },
+    {
+      name: 'Provence',
+      indicateurQPositif: true,
+      flexibilitePartielle: true,
+      indicateurQNegatif: true
+    }
+  ];
   
   zones: ZoneDefinition[] = [
     { name: 'Très long', min: 3059, max: 3200, color: '#f8d0a2' },
@@ -72,6 +128,32 @@ export class StockConduiteProjecteComponent implements OnInit {
   
   ngOnInit(): void {
     this.generateStockData();
+  }
+  
+  refreshData(): void {
+    this.lastUpdate = new Date().toLocaleString('fr-FR', {
+      day: '2-digit',
+      month: '2-digit',
+      year: 'numeric',
+      hour: '2-digit',
+      minute: '2-digit'
+    });
+    
+    // In a real application, this would call a service to get new data
+    this.generateStockData();
+    
+    // Randomly update some region indicators to simulate data changes
+    this.regions.forEach(region => {
+      if (Math.random() > 0.7) {
+        region.indicateurQPositif = !region.indicateurQPositif;
+      }
+      if (Math.random() > 0.7) {
+        region.flexibilitePartielle = !region.flexibilitePartielle;
+      }
+      if (Math.random() > 0.7) {
+        region.indicateurQNegatif = !region.indicateurQNegatif;
+      }
+    });
   }
   
   generateStockData(): void {
