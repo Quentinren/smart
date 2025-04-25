@@ -144,6 +144,10 @@ app-root {
   height: 100%;
 }
 
+.mat-mdc-cell {
+  font-weight: 400;
+  font-style: none;
+}
 /* Update Material styles for active elements to match logo color */
 .mat-mdc-button.mat-primary .mat-ripple-element,
 .mat-mdc-unelevated-button.mat-primary .mat-ripple-element,

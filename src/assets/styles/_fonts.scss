@@ -22,9 +22,9 @@ $font-size-xl: 1.5rem;    // 24px
 $font-size-xxl: 2rem;     // 32px
 
 /* Line heights */
-$line-height-tight: 1.25;
-$line-height-base: 1.5;
-$line-height-loose: 1.75;
+$line-height-tight: 1.05;
+$line-height-base: 1.15;
+$line-height-loose: 1.45;
 
 /* Font mixins */
 @mixin heading-1 {
@@ -36,14 +36,14 @@ $line-height-loose: 1.75;
 
 @mixin heading-2 {
   font-family: $font-primary;
-  font-weight: $font-weight-semibold;
+  font-weight: $font-weight-regular;
   font-size: $font-size-xl;
   line-height: $line-height-tight;
 }
 
 @mixin heading-3 {
   font-family: $font-primary;
-  font-weight: $font-weight-medium;
+  font-weight: $font-weight-regular;
   font-size: $font-size-lg;
   line-height: $line-height-tight;
 }

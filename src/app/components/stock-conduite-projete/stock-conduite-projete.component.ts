@@ -1,4 +1,3 @@
-@ -0,0 +1,135 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -51,6 +50,8 @@ export class StockConduiteProjecteComponent implements OnInit {
   currentValue = 2873.422;
   currentTime = '16:00';
   equilibriumStatus = 'Équilibré';
+  lastUpdate = '25/04/2025 16:15'; // Added missing property
+  selectedDate = '25/04/2025'; // Added missing property
   
   zones: ZoneDefinition[] = [
     { name: 'Très long', min: 3059, max: 3200, color: '#f8d0a2' },
@@ -90,6 +91,19 @@ export class StockConduiteProjecteComponent implements OnInit {
       { hour: '15h', value: 2843 },
       { hour: '16h', value: 2873 }
     ];
+  }
+  
+  // Added missing refreshData method
+  refreshData(): void {
+    this.lastUpdate = new Date().toLocaleString('fr-FR', {
+      day: '2-digit',
+      month: '2-digit',
+      year: 'numeric', 
+      hour: '2-digit',
+      minute: '2-digit'
+    });
+    // Here would be the API call to fetch new data
+    this.generateStockData();
   }
   
   getYPosition(value: number): number {
