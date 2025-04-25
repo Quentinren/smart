@@ -4,34 +4,33 @@ import { ProgrammeTravauxComponent } from './components/programme-travaux/progra
 import { VigilanceInfoComponent } from './components/vigilance-info/vigilance-info.component';
 
 export const routes: Routes = [
-  { path: '', component: MainDashboardComponent },
+  { path: '', redirectTo: 'info-vigilance', pathMatch: 'full' },
+  
+  // Info Vigilance route
   { path: 'info-vigilance', component: VigilanceInfoComponent },
   
-  // Programme Travaux routes
+  // Programme Travaux routes - all handled by the same component with different params
   { path: 'programme-travaux', component: ProgrammeTravauxComponent },
-  { path: 'programme-travaux/points-cam', component: ProgrammeTravauxComponent },
-  { path: 'programme-travaux/points-non-cam', component: ProgrammeTravauxComponent },
-  { path: 'programme-travaux/super-points', component: ProgrammeTravauxComponent },
-  { path: 'programme-travaux/carte-restriction', component: ProgrammeTravauxComponent },
+  { path: 'programme-travaux/points-cam', component: ProgrammeTravauxComponent, data: { type: 'points-cam' } },
+  { path: 'programme-travaux/points-non-cam', component: ProgrammeTravauxComponent, data: { type: 'points-non-cam' } },
+  { path: 'programme-travaux/super-points', component: ProgrammeTravauxComponent, data: { type: 'super-points' } },
+  { path: 'programme-travaux/carte-restriction', component: ProgrammeTravauxComponent, data: { type: 'carte-restriction' } },
   
-  // Capacités routes
+  // Other routes - using MainDashboardComponent as placeholders
   { path: 'capacites', component: MainDashboardComponent },
   { path: 'capacites/marche-primaire', component: MainDashboardComponent },
   { path: 'capacites/marche-secondaire', component: MainDashboardComponent },
   { path: 'capacites/marche-aval', component: MainDashboardComponent },
   
-  // Flux routes
   { path: 'flux', component: MainDashboardComponent },
   { path: 'flux/commerciaux', component: MainDashboardComponent },
   { path: 'flux/physiques', component: MainDashboardComponent },
   { path: 'flux/carte-quantites', component: MainDashboardComponent },
   
-  // Quantités Aval routes
   { path: 'quantites-aval', component: MainDashboardComponent },
   { path: 'quantites-aval/consommations', component: MainDashboardComponent },
   { path: 'quantites-aval/production-biomethane', component: MainDashboardComponent },
   
-  // Équilibrage routes
   { path: 'equilibrage', component: MainDashboardComponent },
   { path: 'equilibrage/desequilibre-programme', component: MainDashboardComponent },
   { path: 'equilibrage/soldes-desequilibres', component: MainDashboardComponent },
@@ -42,7 +41,6 @@ export const routes: Routes = [
   { path: 'equilibrage/prix', component: MainDashboardComponent },
   { path: 'equilibrage/position-desequilibre-final', component: MainDashboardComponent },
   
-  // Opérateurs Connectés routes
   { path: 'operateurs-connectes', component: MainDashboardComponent },
   { path: 'operateurs-connectes/elengy', component: MainDashboardComponent },
   { path: 'operateurs-connectes/dunkerque-lng', component: MainDashboardComponent },
@@ -51,5 +49,7 @@ export const routes: Routes = [
   
   { path: 'flexibilite-intraj', component: MainDashboardComponent },
   { path: 'tarifs', component: MainDashboardComponent },
-  { path: '**', redirectTo: '' }
+  
+  // Wildcard route - redirect to home
+  { path: '**', redirectTo: 'info-vigilance' }
 ];

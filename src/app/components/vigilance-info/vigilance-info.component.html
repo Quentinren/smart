@@ -1,4 +1,8 @@
 <div class="vigilance-info-container">
+  <div class="section-header">
+    <h1 class="section-title">Info Vigilance</h1>
+  </div>
+
   <div class="table-responsive" *ngIf="limitItems$ | async as limitItems">
     <table mat-table [dataSource]="limitItems" class="limits-table">
       <!-- Status Column -->

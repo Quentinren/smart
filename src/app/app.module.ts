@@ -5,6 +5,9 @@ import { AppRoutingModule } from './app-routing.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 
+// Services
+import { LimitsService } from './shared/services/limits.service';
+
 // Angular Material imports
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatSidenavModule } from '@angular/material/sidenav';
@@ -36,6 +39,8 @@ import { AppComponent } from './app.component';
     BrowserModule,
     BrowserAnimationsModule,
     AppRoutingModule,
+    AppComponent,
+    HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
@@ -57,7 +62,7 @@ import { AppComponent } from './app.component';
     MatSnackBarModule,
     MatChipsModule
   ],
-  providers: [],
+  providers: [LimitsService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

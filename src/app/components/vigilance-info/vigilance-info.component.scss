@@ -4,6 +4,18 @@
 .vigilance-info-container {
   padding: $spacing-md 0;
   
+  .section-header {
+    margin-bottom: $spacing-lg;
+    
+    .section-title {
+      font-family: $font-primary;
+      font-size: $font-size-xl;
+      font-weight: $font-weight-semibold;
+      color: $color-primary;
+      margin: 0;
+    }
+  }
+  
   .table-responsive {
     overflow-x: auto;
     margin-bottom: $spacing-lg;

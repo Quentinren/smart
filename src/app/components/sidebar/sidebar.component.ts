@@ -28,6 +28,7 @@ interface SidebarItem {
 })
 export class SidebarComponent implements OnInit {
   activeRoute: string = '';
+  currentLang: string = 'fr';
   
   sidebarItems: SidebarItem[] = [
     { 
@@ -41,10 +42,10 @@ export class SidebarComponent implements OnInit {
       route: '/programme-travaux', 
       icon: 'build',
       submenu: [
-        { name: 'Points CAM', route: '/programme-travaux/points-cam' },
-        { name: 'Points non-CAM', route: '/programme-travaux/points-non-cam' },
-        { name: 'Super Points', route: '/programme-travaux/super-points' },
-        { name: 'Carte de restriction', route: '/programme-travaux/carte-restriction' }
+        { name: 'Programme Travaux - Points CAM', route: '/programme-travaux/points-cam' },
+        { name: 'Programme Travaux - Points non-CAM', route: '/programme-travaux/points-non-cam' },
+        { name: 'Programme Travaux - Super Points', route: '/programme-travaux/super-points' },
+        { name: 'Programme Travaux - Carte de restriction', route: '/programme-travaux/carte-restriction' }
       ] 
     },
     { 
@@ -52,9 +53,9 @@ export class SidebarComponent implements OnInit {
       route: '/capacites', 
       icon: 'speed',
       submenu: [
-        { name: 'Marché primaire', route: '/capacites/marche-primaire' },
-        { name: 'Marché secondaire', route: '/capacites/marche-secondaire' },
-        { name: 'Marché aval', route: '/capacites/marche-aval' }
+        { name: 'Capacités - Marché primaire', route: '/capacites/marche-primaire' },
+        { name: 'Capacités - Marché secondaire', route: '/capacites/marche-secondaire' },
+        { name: 'Capacités - Marché aval', route: '/capacites/marche-aval' }
       ] 
     },
     { 
@@ -62,9 +63,9 @@ export class SidebarComponent implements OnInit {
       route: '/flux', 
       icon: 'trending_up',
       submenu: [
-        { name: 'Commerciaux', route: '/flux/commerciaux' },
-        { name: 'Physiques', route: '/flux/physiques' },
-        { name: 'Carte des quantités', route: '/flux/carte-quantites' }
+        { name: 'Flux - Commerciaux', route: '/flux/commerciaux' },
+        { name: 'Flux - Physiques', route: '/flux/physiques' },
+        { name: 'Flux - Carte des quantités', route: '/flux/carte-quantites' }
       ] 
     },
     { 
@@ -72,8 +73,8 @@ export class SidebarComponent implements OnInit {
       route: '/quantites-aval', 
       icon: 'bar_chart',
       submenu: [
-        { name: 'Consommations', route: '/quantites-aval/consommations' },
-        { name: 'Production Biométhane', route: '/quantites-aval/production-biomethane' }
+        { name: 'Quantités Aval - Consommations', route: '/quantites-aval/consommations' },
+        { name: 'Quantités Aval - Production Biométhane', route: '/quantites-aval/production-biomethane' }
       ] 
     },
     { 
@@ -81,14 +82,14 @@ export class SidebarComponent implements OnInit {
       route: '/equilibrage', 
       icon: 'balance',
       submenu: [
-        { name: 'Déséquilibre de programme', route: '/equilibrage/desequilibre-programme' },
-        { name: 'Soldes des déséquilibres', route: '/equilibrage/soldes-desequilibres' },
-        { name: 'Bilan des E/S', route: '/equilibrage/bilan-es' },
-        { name: 'Stock en conduite', route: '/equilibrage/stock-conduite' },
-        { name: 'Stock en conduite projeté', route: '/equilibrage/stock-conduite-projete' },
-        { name: 'Prévision des clients profilés', route: '/equilibrage/prevision-clients-profiles' },
-        { name: 'Prix – depuis le 1er mai 2023', route: '/equilibrage/prix' },
-        { name: 'Position de déséquilibre final', route: '/equilibrage/position-desequilibre-final' }
+        { name: 'Équilibrage - Déséquilibre de programme', route: '/equilibrage/desequilibre-programme' },
+        { name: 'Équilibrage - Soldes des déséquilibres', route: '/equilibrage/soldes-desequilibres' },
+        { name: 'Équilibrage - Bilan des E/S', route: '/equilibrage/bilan-es' },
+        { name: 'Équilibrage - Stock en conduite', route: '/equilibrage/stock-conduite' },
+        { name: 'Équilibrage - Stock en conduite projeté', route: '/equilibrage/stock-conduite-projete' },
+        { name: 'Équilibrage - Prévision des clients profilés', route: '/equilibrage/prevision-clients-profiles' },
+        { name: 'Équilibrage - Prix depuis le 1er mai 2023', route: '/equilibrage/prix' },
+        { name: 'Équilibrage - Position de déséquilibre final', route: '/equilibrage/position-desequilibre-final' }
       ] 
     },
     { 
@@ -96,10 +97,10 @@ export class SidebarComponent implements OnInit {
       route: '/operateurs-connectes', 
       icon: 'people',
       submenu: [
-        { name: 'ELENGY', route: '/operateurs-connectes/elengy' },
-        { name: 'Dunkerque LNG', route: '/operateurs-connectes/dunkerque-lng' },
-        { name: 'TELSF', route: '/operateurs-connectes/telsf' },
-        { name: 'Storengy', route: '/operateurs-connectes/storengy' }
+        { name: 'Opérateurs Connectés - ELENGY', route: '/operateurs-connectes/elengy' },
+        { name: 'Opérateurs Connectés - Dunkerque LNG', route: '/operateurs-connectes/dunkerque-lng' },
+        { name: 'Opérateurs Connectés - TELSF', route: '/operateurs-connectes/telsf' },
+        { name: 'Opérateurs Connectés - Storengy', route: '/operateurs-connectes/storengy' }
       ] 
     },
     { 
@@ -133,6 +134,13 @@ export class SidebarComponent implements OnInit {
   }
   
   toggleSubmenu(item: SidebarItem): void {
+    // If the item has no submenu or an empty submenu, navigate directly
+    if (!item.submenu || item.submenu.length === 0) {
+      this.router.navigate([item.route]);
+      return;
+    }
+    
+    // Otherwise, toggle the submenu
     item.expanded = !item.expanded;
     
     // Close other expanded menus if this one is being expanded
@@ -143,6 +151,11 @@ export class SidebarComponent implements OnInit {
         }
       });
     }
+  }
+
+  // Method to navigate to a specific page
+  navigateToPage(route: string): void {
+    this.router.navigate([route]);
   }
   
   expandActiveMenu(): void {
@@ -162,4 +175,12 @@ export class SidebarComponent implements OnInit {
     if (!item.submenu) return false;
     return item.submenu.some(subItem => this.activeRoute === subItem.route);
   }
+  
+  changeLanguage(lang: string): void {
+    this.currentLang = lang;
+    // Here you would typically call a language service to change the app language
+    // For now we'll just update the UI state
+  }
+
+  
 }

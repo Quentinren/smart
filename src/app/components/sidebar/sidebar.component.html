@@ -20,14 +20,28 @@
       </div>
       
       <div class="submenu" *ngIf="item.submenu && item.submenu.length > 0 && item.expanded">
-        <a *ngFor="let submenu of item.submenu"
-           class="submenu-item"
+        <a *ngFor="let submenu of item.submenu" 
+           class="submenu-item" 
            [class.active]="submenu.route === activeRoute"
            [routerLink]="submenu.route" 
            routerLinkActive="active-submenu">
           {{submenu.name}}
         </a>
       </div>
+    </div>
+  </div>
+  
+  <div class="sidebar-footer">
+    <div class="language-selector">
+      <a href="#" class="lang-link" [class.active]="currentLang === 'fr'" (click)="changeLanguage('fr'); $event.preventDefault()">
+        <img src="assets/images/flag-fr.svg" class="flag-icon" alt="Français">
+        <span>FR</span>
+      </a>
+      <span class="divider">|</span>
+      <a href="#" class="lang-link" [class.active]="currentLang === 'en'" (click)="changeLanguage('en'); $event.preventDefault()">
+        <img src="assets/images/flag-en.svg" class="flag-icon" alt="English">
+        <span>EN</span>
+      </a>
     </div>
   </div>
 </div>

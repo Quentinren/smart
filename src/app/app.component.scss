@@ -1,7 +1,14 @@
 .sidenav-container {
-    height: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
   }
     
+  .full-height {
+    flex: 1;
+    height: 100%;
+  }
+  
   .sidenav {
     width: 250px;
     background-color: var(--color-sidebar);
@@ -10,6 +17,8 @@
     
   .main-content {
     padding: var(--spacing-md);
+    height: 100%;
+    overflow-y: auto;
   }
     
   @media (max-width: 768px) {
