@@ -1,8 +1,5 @@
 <div class="vigilance-info-container">
-  <div class="section-header">
-    <h1 class="section-title">Info Vigilance</h1>
-  </div>
-
+  <!-- Table Section -->
   <div class="table-responsive" *ngIf="limitItems$ | async as limitItems">
     <table mat-table [dataSource]="limitItems" class="limits-table">
       <!-- Status Column -->
@@ -30,14 +27,6 @@
       <ng-container matColumnDef="value">
         <th mat-header-cell *matHeaderCellDef>{{ workImpact }}</th>
         <td mat-cell *matCellDef="let item">{{ item.value }}</td>
-      </ng-container>
-      
-      <!-- Works Column -->
-      <ng-container matColumnDef="works">
-        <th mat-header-cell *matHeaderCellDef>{{ workImpact }}</th>
-        <td mat-cell *matCellDef="let item">
-          <mat-icon *ngIf="item.impactedWorks">engineering</mat-icon>
-        </td>
       </ng-container>
       
       <!-- Interruptible Column -->
@@ -68,7 +57,26 @@
       <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
     </table>
   </div>
+
+  <!-- Maps Section -->
+  <div class="maps-container">
+    <div class="maps-grid">
+      <div class="map-card">
+        <div class="map-title">{{ mapTitles.northSouth }}</div>
+        <div class="map-image">
+          <img src="assets/images/infovigilance_ns_eo.png" alt="Carte des limites Nord-Sud et Est-Ouest" />
+        </div>
+      </div>
+      <div class="map-card">
+        <div class="map-title">{{ mapTitles.southNorth }}</div>
+        <div class="map-image">
+          <img src="assets/images/infovigilance_sn.png" alt="Carte des limites Sud-Nord" />
+        </div>
+      </div>
+    </div>
+  </div>
   
+  <!-- Legend Section -->
   <div class="legend-container">
     <div class="legend-item">
       <div class="legend-icon">
@@ -81,6 +89,36 @@
         <mat-icon>engineering</mat-icon>
       </div>
       <div class="legend-text">Maintenance</div>
+    </div>
+  </div>
+
+  <!-- Footer Section with Last Update and Definitions -->
+  <div class="page-footer">
+    <div class="last-update">{{ lastUpdateLabel }}: {{ lastUpdate }}</div>
+    <button mat-button color="primary" (click)="toggleDefinitions()">
+      <mat-icon>info</mat-icon>
+      {{ definitionsLabel }}
+    </button>
+  </div>
+
+  <!-- Definitions Panel -->
+  <div class="definitions-panel" [class.visible]="showDefinitions">
+    <div class="panel-header">
+      <h3>{{ definitionsLabel }}</h3>
+      <div class="language-selector">
+        <button mat-button [class.active]="currentLang === 'fr'" (click)="changeLanguage('fr')">FR</button>
+        <span class="divider">|</span>
+        <button mat-button [class.active]="currentLang === 'en'" (click)="changeLanguage('en')">EN</button>
+      </div>
+      <button mat-icon-button (click)="toggleDefinitions()">
+        <mat-icon>close</mat-icon>
+      </button>
+    </div>
+    <div class="panel-content">
+      <div class="definition-item" *ngFor="let def of definitions">
+        <h4>{{ def.title }}</h4>
+        <p>{{ def.description }}</p>
+      </div>
     </div>
   </div>
 </div>

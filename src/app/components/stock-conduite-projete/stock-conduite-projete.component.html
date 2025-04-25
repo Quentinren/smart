@@ -1,0 +1,150 @@
+<div class="stock-conduite-container">
+  <div class="info-banner">
+    <div class="info-icon">
+      <mat-icon>info</mat-icon>
+    </div>
+    <div class="info-message">
+      Les données associées aux maillages obsolètes, qui ne sont plus affichées sur le portail, restent disponibles via la fonction Services>Requête de données.
+    </div>
+  </div>
+
+  <div class="controls-section">
+    <div class="date-controls">
+      <mat-form-field appearance="outline">
+        <mat-label>Période</mat-label>
+        <mat-date-range-input [formGroup]="dateRange" [rangePicker]="picker">
+          <input matStartDate formControlName="start" placeholder="Date début">
+          <input matEndDate formControlName="end" placeholder="Date fin">
+        </mat-date-range-input>
+        <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-date-range-picker #picker></mat-date-range-picker>
+      </mat-form-field>
+    </div>
+    
+    <div class="current-stats">
+      <div class="stats-container">
+        <div class="stats-label">Stock en conduite projeté | courante</div>
+        <div class="stats-values">
+          <div class="stats-item">
+            <div class="stats-title">Heure</div>
+            <div class="stats-value">{{ currentTime }}</div>
+          </div>
+          <div class="stats-item">
+            <div class="stats-title">Valeur</div>
+            <div class="stats-value">{{ currentValue | number:'1.0-0' }} GWh</div>
+          </div>
+          <div class="stats-item status-tag">
+            <div class="status-indicator" [ngClass]="equilibriumStatus.toLowerCase().replace(' ', '-')">{{ equilibriumStatus }}</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="chart-container">
+    <svg [attr.width]="chartWidth" [attr.height]="chartHeight" class="stock-chart">
+      <!-- Zone bands -->
+      <g *ngFor="let zone of zones">
+        <rect 
+          [attr.x]="0" 
+          [attr.y]="getZoneY(zone)" 
+          [attr.width]="chartWidth" 
+          [attr.height]="getZoneHeight(zone)" 
+          [attr.fill]="zone.color">
+        </rect>
+        <text 
+          [attr.x]="chartWidth + 10" 
+          [attr.y]="getZoneY(zone) + getZoneHeight(zone) / 2" 
+          class="zone-label">
+          {{ zone.name }}
+        </text>
+      </g>
+      
+      <!-- Y-axis labels and grid lines -->
+      <g *ngFor="let value of [2573, 2627, 2681, 2735, 2789, 2843, 2897, 2951, 3005, 3059, 3113]">
+        <line 
+          [attr.x1]="0" 
+          [attr.y1]="getYPosition(value)" 
+          [attr.x2]="chartWidth" 
+          [attr.y2]="getYPosition(value)" 
+          class="grid-line">
+        </line>
+        <text 
+          [attr.x]="-5" 
+          [attr.y]="getYPosition(value)" 
+          class="axis-label">
+          {{ value }}
+        </text>
+      </g>
+      
+      <!-- X-axis labels -->
+      <g *ngFor="let label of timeLabels; let i = index">
+        <text 
+          [attr.x]="getXPosition(i)" 
+          [attr.y]="chartHeight + 20" 
+          class="axis-label">
+          {{ label }}
+        </text>
+      </g>
+      
+      <!-- Data points and connecting lines -->
+      <polyline
+        [attr.points]="getPointsPath()"
+        class="data-line">
+      </polyline>
+      
+      <g *ngFor="let point of stockData; let i = index">
+        <circle 
+          [attr.cx]="getXPosition(i)" 
+          [attr.cy]="getYPosition(point.value)" 
+          r="4" 
+          class="data-point">
+        </circle>
+      </g>
+      
+      <!-- Y-axis label -->
+      <text 
+        [attr.x]="-40" 
+        [attr.y]="chartHeight / 2" 
+        transform="rotate(-90, -40, 200)" 
+        class="axis-title">
+        GWh 25°C
+      </text>
+    </svg>
+    
+    <div class="chart-legend">
+      <div class="legend-item">
+        <div class="legend-color tres-long"></div>
+        <div class="legend-label">Très long</div>
+      </div>
+      <div class="legend-item">
+        <div class="legend-color long"></div>
+        <div class="legend-label">Long</div>
+      </div>
+      <div class="legend-item">
+        <div class="legend-color equilibre-long"></div>
+        <div class="legend-label">Équilibré long</div>
+      </div>
+      <div class="legend-item">
+        <div class="legend-color equilibre"></div>
+        <div class="legend-label">Équilibré</div>
+      </div>
+      <div class="legend-item">
+        <div class="legend-color equilibre-court"></div>
+        <div class="legend-label">Équilibré court</div>
+      </div>
+      <div class="legend-item">
+        <div class="legend-color court"></div>
+        <div class="legend-label">Court</div>
+      </div>
+      <div class="legend-item">
+        <div class="legend-color tres-court"></div>
+        <div class="legend-label">Très court</div>
+      </div>
+    </div>
+  </div>
+  
+  <div class="chart-footer">
+    <div class="data-source">FusionCharts Trial</div>
+  </div>
+</div>

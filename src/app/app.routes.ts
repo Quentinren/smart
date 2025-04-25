@@ -2,6 +2,7 @@ import { Routes } from '@angular/router';
 import { MainDashboardComponent } from './components/main-dashboard/main-dashboard.component';
 import { ProgrammeTravauxComponent } from './components/programme-travaux/programme-travaux.component';
 import { VigilanceInfoComponent } from './components/vigilance-info/vigilance-info.component';
+import { StockConduiteProjecteComponent } from './components/stock-conduite-projete/stock-conduite-projete.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'info-vigilance', pathMatch: 'full' },
@@ -36,7 +37,7 @@ export const routes: Routes = [
   { path: 'equilibrage/soldes-desequilibres', component: MainDashboardComponent },
   { path: 'equilibrage/bilan-es', component: MainDashboardComponent },
   { path: 'equilibrage/stock-conduite', component: MainDashboardComponent },
-  { path: 'equilibrage/stock-conduite-projete', component: MainDashboardComponent },
+  { path: 'equilibrage/stock-conduite-projete', component: StockConduiteProjecteComponent },
   { path: 'equilibrage/prevision-clients-profiles', component: MainDashboardComponent },
   { path: 'equilibrage/prix', component: MainDashboardComponent },
   { path: 'equilibrage/position-desequilibre-final', component: MainDashboardComponent },
