@@ -17,15 +17,16 @@ import { RouterModule } from '@angular/router';
 export class HeaderComponent {
   @Output() toggleSidenavEvent = new EventEmitter<void>();
   
-  constructor(private breakpointObserver: BreakpointObserver) {}
-  
-  isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
-    .pipe(
-      map(result => result.matches),
-      shareReplay()
-    );
-  
+  isHandset$: Observable<boolean>;
   currentDate = new Date();
+  
+  constructor(private breakpointObserver: BreakpointObserver) {
+    this.isHandset$ = this.breakpointObserver.observe(Breakpoints.Handset)
+      .pipe(
+        map(result => result.matches),
+        shareReplay()
+      );
+  }
   
   toggleSidenav() {
     this.toggleSidenavEvent.emit();
