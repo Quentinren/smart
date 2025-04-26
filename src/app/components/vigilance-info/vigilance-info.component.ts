@@ -67,7 +67,7 @@ export class VigilanceInfoComponent implements OnInit {
       lastUpdateLabel: 'Dernier rafraîchissement',
       definitionsLabel: 'Définitions',
       mapTitles: {
-        northSouth: 'CARTE DES LIMITES NORD>SUD ET EST>OUEST',
+        northSouth: 'Carte des LIMITES NORD>SUD ET EST>OUEST',
         southNorth: 'CARTE DES LIMITES SUD>NORD'
       },
       definitions: [
