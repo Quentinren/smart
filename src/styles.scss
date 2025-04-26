@@ -146,7 +146,6 @@ app-root {
 
 .mat-mdc-cell {
   font-weight: 400;
-  font-style: none;
 }
 /* Update Material styles for active elements to match logo color */
 .mat-mdc-button.mat-primary .mat-ripple-element,
@@ -212,4 +211,38 @@ app-root {
 
 .mat-mdc-progress-spinner.mat-accent {
   --mdc-circular-progress-active-indicator-color: var(--color-primary);
+}
+
+table {
+  // Style général des tableaux
+  font-weight: 300; // Poids de police réduit
+  
+  th {
+    font-weight: 500; // En-têtes légèrement plus légers que par défaut
+    color: #333;
+  }
+  
+  td {
+    font-weight: 400; // Cellules avec poids normal
+    color: #555;
+  }
+  
+  // Vous pouvez également réduire légèrement la taille de police si nécessaire
+  font-size: 0.9rem;
+  
+  // Appliquez un style inline directement pour les cellules
+  .mat-cell, .mat-header-cell {
+    font-weight: inherit;
+  }
+}
+
+// Pour cibler spécifiquement les tableaux Material
+.mat-table {
+  .mat-header-cell {
+    font-weight: 500 !important; // Assurez-vous que cela est appliqué
+  }
+  
+  .mat-cell {
+    font-weight: 400 !important;
+  }
 }

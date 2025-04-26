@@ -1,8 +1,16 @@
 <div class="stock-conduite-container">
-  <div class="section-header">
-    <h1 class="section-title">Stock en conduite projeté</h1>
+  <!-- Menu / Sous-menu header -->
+  <div class="menu-header">
+    <div class="menu-title">
+      <h1 class="primary-title">Équilibrage</h1>
+      <span class="separator-icon">
+        <mat-icon>chevron_right</mat-icon>
+      </span>
+      <h2 class="sub-title">Stock en conduite projeté</h2>
+    </div>
   </div>
   
+  <!-- Bannière d'information -->
   <div class="info-banner">
     <div class="info-icon">
       <mat-icon>info</mat-icon>
@@ -12,9 +20,10 @@
     </div>
   </div>
   
+  <!-- Contrôles et état actuel -->
   <div class="controls-section">
     <div class="date-controls">
-      <mat-form-field appearance="outline">
+      <mat-form-field appearance="outline" class="date-field">
         <mat-label>Période</mat-label>
         <mat-date-range-input [formGroup]="dateRange" [rangePicker]="picker">
           <input matStartDate formControlName="start" placeholder="Date début">
@@ -23,8 +32,6 @@
         <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
         <mat-date-range-picker #picker></mat-date-range-picker>
       </mat-form-field>
-      
-
     </div>
     
     <div class="current-stats">
@@ -40,7 +47,7 @@
             <div class="stats-value">{{ currentTime }}</div>
           </div>
           <div class="status-tag">
-            <div class="status-indicator" [ngClass]="equilibriumStatus.toLowerCase()">
+            <div class="status-indicator" [ngClass]="equilibriumStatus.toLowerCase().replace(' ', '-')">
               {{ equilibriumStatus }}
             </div>
           </div>
@@ -49,9 +56,10 @@
     </div>
   </div>
   
+  <!-- Graphique -->
   <div class="chart-container">
     <svg [attr.width]="chartWidth" [attr.height]="chartHeight" viewBox="0 0 900 400" preserveAspectRatio="xMidYMid meet">
-      <!-- Background zones -->
+      <!-- Zones de fond -->
       <g *ngFor="let zone of zones">
         <rect
           x="0"
@@ -65,20 +73,21 @@
           x="10"
           [attr.y]="getZoneY(zone) + getZoneHeight(zone) / 2"
           class="zone-label"
+          alignment-baseline="middle"
         >{{ zone.name }}</text>
       </g>
       
-      <!-- Grid lines -->
-      <g *ngFor="let value of [2600, 2700, 2800, 2900, 3000, 3100]">
+      <!-- Lignes de grille -->
+      <g *ngFor="let value of yAxisValues">
         <line
-          x1="0"
+          x1="50"
           [attr.y1]="getYPosition(value)"
           [attr.x2]="chartWidth"
           [attr.y2]="getYPosition(value)"
           class="grid-line"
         />
         <text
-          x="-5"
+          x="45"
           [attr.y]="getYPosition(value)"
           text-anchor="end"
           alignment-baseline="middle"
@@ -86,7 +95,7 @@
         >{{ value }}</text>
       </g>
       
-      <!-- X-axis labels -->
+      <!-- Étiquettes de l'axe X -->
       <g *ngFor="let label of timeLabels; let i = index">
         <text
           [attr.x]="getXPosition(i)"
@@ -96,13 +105,7 @@
         >{{ label }}</text>
       </g>
       
-      <!-- Data line -->
-      <polyline
-        class="data-line"
-        [attr.points]="getPointsPath()"
-      />
-      
-      <!-- Data points -->
+      <!-- Points de données (sans ligne) -->
       <g *ngFor="let point of stockData; let i = index">
         <circle
           [attr.cx]="getXPosition(i)"
@@ -112,35 +115,21 @@
         />
       </g>
       
-      <!-- Axis titles -->
+      <!-- Titres des axes -->
       <text x="-60" y="200" class="axis-title" transform="rotate(-90, -60, 200)">Stock en GWh</text>
       <text x="450" y="430" class="axis-title">Heure</text>
     </svg>
     
+    <!-- Légende du graphique -->
     <div class="chart-legend">
-      <div class="legend-item">
-        <div class="legend-color tres-long"></div>
-        <div class="legend-label">Très long</div>
-      </div>
-      <div class="legend-item">
-        <div class="legend-color long"></div>
-        <div class="legend-label">Long</div>
-      </div>
-      <div class="legend-item">
-        <div class="legend-color equilibre"></div>
-        <div class="legend-label">Équilibré</div>
-      </div>
-      <div class="legend-item">
-        <div class="legend-color court"></div>
-        <div class="legend-label">Court</div>
-      </div>
-      <div class="legend-item">
-        <div class="legend-color tres-court"></div>
-        <div class="legend-label">Très court</div>
+      <div class="legend-item" *ngFor="let zone of legendItems">
+        <div class="legend-color" [ngClass]="zone.class"></div>
+        <div class="legend-label">{{ zone.name }}</div>
       </div>
     </div>
   </div>
   
+  <!-- Pied de page -->
   <div class="chart-footer">
     <div class="data-source">Source: données du {{ selectedDate }}</div>
   </div>

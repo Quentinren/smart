@@ -105,11 +105,6 @@
   <div class="definitions-panel" [class.visible]="showDefinitions">
     <div class="panel-header">
       <h3>{{ definitionsLabel }}</h3>
-      <div class="language-selector">
-        <button mat-button [class.active]="currentLang === 'fr'" (click)="changeLanguage('fr')">FR</button>
-        <span class="divider">|</span>
-        <button mat-button [class.active]="currentLang === 'en'" (click)="changeLanguage('en')">EN</button>
-      </div>
       <button mat-icon-button (click)="toggleDefinitions()">
         <mat-icon>close</mat-icon>
       </button>

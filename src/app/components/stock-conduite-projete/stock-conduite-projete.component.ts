@@ -22,6 +22,11 @@ interface ZoneDefinition {
   color: string;
 }
 
+interface LegendItem {
+  name: string;
+  class: string;
+}
+
 @Component({
   selector: 'app-stock-conduite-projete',
   templateUrl: './stock-conduite-projete.component.html',
@@ -50,17 +55,28 @@ export class StockConduiteProjecteComponent implements OnInit {
   currentValue = 2873.422;
   currentTime = '16:00';
   equilibriumStatus = 'Équilibré';
-  lastUpdate = '25/04/2025 16:15'; // Added missing property
-  selectedDate = '25/04/2025'; // Added missing property
+  lastUpdate = '25/04/2025 16:15';
+  selectedDate = '25/04/2025';
+  
+  // Valeurs pour l'axe Y
+  yAxisValues = [2600, 2700, 2800, 2900, 3000, 3100];
   
   zones: ZoneDefinition[] = [
-    { name: 'Très long', min: 3059, max: 3200, color: '#f8d0a2' },
-    { name: 'Long', min: 3005, max: 3059, color: '#f8d0a2' },
-    { name: 'Équilibré long', min: 2951, max: 3005, color: '#bfdbd5' },
-    { name: 'Équilibré', min: 2897, max: 2951, color: '#bfdbd5' },
-    { name: 'Équilibré court', min: 2681, max: 2897, color: '#bfdbd5' },
-    { name: 'Court', min: 2627, max: 2681, color: '#f8d0a2' },
-    { name: 'Très court', min: 2500, max: 2627, color: '#f8d0a2' }
+    { name: 'Très long', min: 3059, max: 3200, color: '#ff5733' },
+    { name: 'Long', min: 3005, max: 3059, color: '#fff8e1' },
+    { name: 'Équilibré long', min: 2951, max: 3005, color: '#ccfadc' },
+    { name: 'Équilibré', min: 2797, max: 2951, color: '#19ea7b' },
+    { name: 'Équilibré court', min: 2681, max: 2797, color: '#ccfadc' },
+    { name: 'Court', min: 2627, max: 2681, color: '#fff8e1' },
+    { name: 'Très court', min: 2500, max: 2627, color: '#ff5733' }
+  ];
+  
+  legendItems: LegendItem[] = [
+    { name: 'Très long', class: 'tres-long' },
+    { name: 'Long', class: 'long' },
+    { name: 'Équilibré', class: 'equilibre' },
+    { name: 'Court', class: 'court' },
+    { name: 'Très court', class: 'tres-court' }
   ];
   
   timeLabels = ['06h', '07h', '08h', '09h', '10h', '11h', '12h', '13h', '14h', '15h', '16h'];
@@ -77,7 +93,7 @@ export class StockConduiteProjecteComponent implements OnInit {
   }
   
   generateStockData(): void {
-    // Example data points - in a real app, these would come from an API
+    // Données d'exemple
     this.stockData = [
       { hour: '06h', value: 2843 },
       { hour: '07h', value: 2843 },
@@ -93,7 +109,6 @@ export class StockConduiteProjecteComponent implements OnInit {
     ];
   }
   
-  // Added missing refreshData method
   refreshData(): void {
     this.lastUpdate = new Date().toLocaleString('fr-FR', {
       day: '2-digit',
@@ -102,49 +117,37 @@ export class StockConduiteProjecteComponent implements OnInit {
       hour: '2-digit',
       minute: '2-digit'
     });
-    // Here would be the API call to fetch new data
     this.generateStockData();
   }
   
   getYPosition(value: number): number {
-    // Map the data value to a Y position in the SVG
+    // Conversion de la valeur en position Y dans le SVG
     const range = this.yMax - this.yMin;
     const normalizedValue = (value - this.yMin) / range;
-    // Invert the Y axis (SVG Y increases downward)
     return this.chartHeight - (normalizedValue * this.chartHeight);
   }
   
   getXPosition(index: number): number {
-    // Map the index to an X position in the SVG
+    // Conversion de l'index en position X dans le SVG
     const step = this.chartWidth / (this.stockData.length - 1);
     return index * step;
   }
   
-  getPointsPath(): string {
-    if (this.stockData.length === 0) return '';
-    
-    return this.stockData.map((point, index) => {
-      const x = this.getXPosition(index);
-      const y = this.getYPosition(point.value);
-      return `${x},${y}`;
-    }).join(' ');
-  }
-  
   getZoneHeight(zone: ZoneDefinition): number {
-    // Calculate the height of a zone band
+    // Calcul de la hauteur d'une zone
     const range = this.yMax - this.yMin;
     const zoneRange = zone.max - zone.min;
     return (zoneRange / range) * this.chartHeight;
   }
   
   getZoneY(zone: ZoneDefinition): number {
-    // Calculate the Y position for a zone band
+    // Calcul de la position Y d'une zone
     return this.getYPosition(zone.max);
   }
   
   onDateRangeChange(): void {
-    // In a real app, this would fetch new data based on date range
+    // Mise à jour des données en fonction de la plage de dates
     console.log('Date range changed:', this.dateRange.value);
-    // Potentially get new data from service
+    // Appel potentiel à un service pour obtenir de nouvelles données
   }
 }
