@@ -5,6 +5,44 @@
   padding: $spacing-md 0;
   position: relative;
   
+  // Time Period Tabs
+  .time-period-tabs {
+    display: flex;
+    margin-bottom: $spacing-md;
+    border-bottom: 1px solid $color-border;
+    
+    .tab {
+      padding: $spacing-sm $spacing-lg;
+      cursor: pointer;
+      color: $color-text;
+      font-weight: $font-weight-medium;
+      transition: all 0.2s ease;
+      position: relative;
+      
+      &:after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        height: 3px;
+        background-color: transparent;
+      }
+      
+      &.active {
+        color: $color-primary;
+        
+        &:after {
+          background-color: $color-primary;
+        }
+      }
+      
+      &:hover:not(.active) {
+        background-color: rgba(0, 0, 0, 0.05);
+      }
+    }
+  }
+  
   .table-responsive {
     overflow-x: auto;
     margin-bottom: $spacing-lg;
@@ -12,43 +50,91 @@
     .limits-table {
       width: 100%;
       background-color: white;
+      border-collapse: collapse;
       border-radius: 4px;
       box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
       
-      th.mat-header-cell {
-        font-family: $font-primary;
-        font-weight: $font-weight-light;
+      th {
+        text-align: left;
+        padding: $spacing-sm $spacing-md;
         color: $color-text;
+        font-weight: $font-weight-medium;
+        border-bottom: 1px solid $color-border;
+        background-color: #f8f8f8;
+        
+        .column-label {
+          font-size: $font-size-xs;
+          color: $color-text-light;
+          font-weight: $font-weight-regular;
+          margin-top: 2px;
+        }
       }
       
-      .mat-header-cell, .mat-cell {
+      td {
         padding: $spacing-sm $spacing-md;
-        text-align: left;
+        border-bottom: 1px solid $color-border;
+        color: $color-text;
+        font-weight: $font-weight-regular;
         
-        &:first-child {
-          padding-left: $spacing-lg;
+        &.center-cell {
+          text-align: center;
         }
-        
-        &:last-child {
-          padding-right: $spacing-lg;
-        }
+      }
+      
+      .status-container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: $spacing-xs;
       }
       
       .status-icon {
-        color: $color-primary;
-        cursor: pointer;
+        color: #4CAF50;
+        font-size: 20px;
+        width: 20px;
+        height: 20px;
+      }
+      
+      .works-icon {
+        color: #FF9800;
+        font-size: 18px;
+        width: 18px;
+        height: 18px;
+      }
+      
+      .planned-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
         
-        &.status-unchecked {
-          color: $color-text-light;
+        .planned-icon {
+          color: #9E9E9E;
+          font-size: 18px;
+          width: 18px;
+          height: 18px;
+        }
+        
+        .cone-icon {
+          color: #FF5722;
+          font-size: 18px;
+          width: 18px;
+          height: 18px;
+          margin-top: -8px;
         }
       }
       
-      .mat-row:nth-child(even) {
+      tr:nth-child(even) {
         background-color: rgba(0, 0, 0, 0.02);
       }
       
-      .mat-row:hover {
+      tr:hover {
         background-color: rgba($color-primary, 0.05);
+      }
+      
+      &.date-table {
+        th {
+          text-align: center;
+        }
       }
     }
   }
@@ -74,7 +160,6 @@
         
         .map-title {
           padding: $spacing-md;
-          font-family: $font-primary;
           font-weight: $font-weight-medium;
           font-size: $font-size-sm;
           text-align: center;
@@ -122,7 +207,10 @@
           font-size: 20px;
           height: 20px;
           width: 20px;
-          color: $color-text;
+          
+          &:first-child {
+            color: #4CAF50;
+          }
         }
       }
       
@@ -147,82 +235,83 @@
     }
   }
   
-  // Definitions panel styling
-  .definitions-panel {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    background-color: white;
-    box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
-    border-top: 3px solid $color-primary;
-    z-index: 1000;
-    transform: translateY(100%);
-    transition: transform 0.3s ease;
-    max-height: 60vh;
-    display: flex;
-    flex-direction: column;
+  // Definitions panel styling (in-page)
+  .definitions-panel-wrapper {
+    height: 0;
+    overflow: hidden;
+    transition: height 0.3s ease;
+    margin-top: $spacing-md;
     
     &.visible {
-      transform: translateY(0);
+      height: auto;
+      max-height: 500px;
     }
     
-    .panel-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: $spacing-md $spacing-lg;
-      border-bottom: 1px solid $color-border;
+    .definitions-panel {
+      background-color: white;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      overflow: hidden;
+      margin-bottom: $spacing-lg;
       
-      h3 {
-        margin: 0;
-        color: $color-primary;
-        font-weight: $font-weight-medium;
-      }
-      
-      .language-selector {
+      .panel-header {
         display: flex;
+        justify-content: space-between;
         align-items: center;
+        padding: $spacing-md $spacing-lg;
+        border-bottom: 1px solid $color-border;
+        background-color: #f8f8f8;
         
-        button {
-          min-width: 40px;
-          
-          &.active {
-            color: $color-primary;
-            font-weight: $font-weight-semibold;
-          }
-        }
-        
-        .divider {
-          color: $color-text-light;
-          margin: 0 $spacing-xs;
-        }
-      }
-    }
-    
-    .panel-content {
-      padding: $spacing-lg;
-      overflow-y: auto;
-      flex: 1;
-      
-      .definition-item {
-        margin-bottom: $spacing-lg;
-        
-        &:last-child {
-          margin-bottom: 0;
-        }
-        
-        h4 {
-          margin-top: 0;
-          margin-bottom: $spacing-sm;
-          font-weight: $font-weight-medium;
-          color: $color-text;
-        }
-        
-        p {
+        h3 {
           margin: 0;
           color: $color-text;
-          line-height: 1.5;
+          font-weight: $font-weight-medium;
+        }
+        
+        .language-selector {
+          display: flex;
+          align-items: center;
+          
+          button {
+            min-width: 40px;
+            
+            &.active {
+              color: $color-primary;
+              font-weight: $font-weight-medium;
+            }
+          }
+          
+          .divider {
+            color: $color-text-light;
+            margin: 0 $spacing-xs;
+          }
+        }
+      }
+      
+      .panel-content {
+        padding: $spacing-lg;
+        max-height: 400px;
+        overflow-y: auto;
+        
+        .definition-item {
+          margin-bottom: $spacing-lg;
+          
+          &:last-child {
+            margin-bottom: 0;
+          }
+          
+          h4 {
+            margin-top: 0;
+            margin-bottom: $spacing-sm;
+            font-weight: $font-weight-medium;
+            color: $color-text;
+          }
+          
+          p {
+            margin: 0;
+            color: $color-text;
+            line-height: 1.5;
+          }
         }
       }
     }

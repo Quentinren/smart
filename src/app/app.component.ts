@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { CommonModule } from '@angular/common';
-import { HeaderComponent } from './components/header/header.component';
+
 import { SidebarComponent } from './components/sidebar/sidebar.component';
 
 @Component({
@@ -14,7 +14,6 @@ import { SidebarComponent } from './components/sidebar/sidebar.component';
     CommonModule,
     RouterModule,
     MatSidenavModule,
-    HeaderComponent,
     SidebarComponent
   ]
 })
