@@ -5,12 +5,12 @@
 $font-primary: 'Poppins', sans-serif;
 $font-secondary: 'Century Gothic', 'CenturyGothic', 'AppleGothic', sans-serif;
 
-/* Font weights */
+/* Font weights - updated with lighter defaults */
 $font-weight-light: 300;
-$font-weight-regular: 400;
-$font-weight-medium: 500;
-$font-weight-semibold: 600;
-$font-weight-bold: 700;
+$font-weight-regular: 400;    /* Reduced from medium weight */
+$font-weight-medium: 500;     /* Use sparingly for emphasis */
+$font-weight-semibold: 600;   /* Use only for critical emphasis */
+$font-weight-bold: 700;       /* Avoid using this weight unless necessary */
 
 /* Font sizes */
 $font-size-xs: 0.75rem;   // 12px
@@ -26,45 +26,45 @@ $line-height-tight: 1.05;
 $line-height-base: 1.15;
 $line-height-loose: 1.45;
 
-/* Font mixins */
+/* Font mixins - updated with lighter font weights */
 @mixin heading-1 {
   font-family: $font-primary;
-  font-weight: $font-weight-bold;
+  font-weight: $font-weight-medium;  /* Reduced from bold */
   font-size: $font-size-xxl;
   line-height: $line-height-tight;
 }
 
 @mixin heading-2 {
   font-family: $font-primary;
-  font-weight: $font-weight-regular;
+  font-weight: $font-weight-regular; /* Kept as regular */
   font-size: $font-size-xl;
   line-height: $line-height-tight;
 }
 
 @mixin heading-3 {
   font-family: $font-primary;
-  font-weight: $font-weight-regular;
+  font-weight: $font-weight-light;   /* Reduced from regular */
   font-size: $font-size-lg;
   line-height: $line-height-tight;
 }
 
 @mixin body-text {
   font-family: $font-secondary;
-  font-weight: $font-weight-regular;
+  font-weight: $font-weight-light;   /* Reduced from regular */
   font-size: $font-size-base;
   line-height: $line-height-base;
 }
 
 @mixin small-text {
   font-family: $font-secondary;
-  font-weight: $font-weight-regular;
+  font-weight: $font-weight-light;   /* Reduced from regular */
   font-size: $font-size-sm;
   line-height: $line-height-base;
 }
 
 @mixin button-text {
   font-family: $font-primary;
-  font-weight: $font-weight-medium;
+  font-weight: $font-weight-regular;  /* Reduced from medium */
   font-size: $font-size-sm;
   line-height: $line-height-tight;
   text-transform: uppercase;

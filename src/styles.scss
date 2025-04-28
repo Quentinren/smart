@@ -19,6 +19,11 @@
   --spacing-md: 16px;
   --spacing-lg: 24px;
   --spacing-xl: 32px;
+  
+  /* Font weight variables */
+  --font-weight-light: 300;
+  --font-weight-regular: 400;
+  --font-weight-medium: 500;
 }
 
 /* Importation des polices */
@@ -29,10 +34,18 @@ body {
   font-family: 'Century Gothic', 'CenturyGothic', 'AppleGothic', 'Poppins', sans-serif;
   margin: 0;
   padding: 0;
+  font-weight: var(--font-weight-light);
 }
 
-h1, h2, h3, h4, h5, h6, .mat-button, .mat-raised-button {
+h1, h2, h3, h4, h5, h6 {
   font-family: 'Poppins', sans-serif;
+  font-weight: var(--font-weight-regular);
+}
+
+/* Reduced font weight for Material buttons */
+.mat-button, .mat-raised-button, .mat-stroked-button, .mat-flat-button {
+  font-family: 'Poppins', sans-serif;
+  font-weight: var(--font-weight-regular) !important;
 }
 
 /* Global styles */
@@ -63,7 +76,6 @@ body {
   padding: var(--spacing-md);
   margin-bottom: var(--spacing-md);
 }
-
 
 .text-center {
   text-align: center;
@@ -144,9 +156,79 @@ app-root {
   height: 100%;
 }
 
-.mat-mdc-cell {
-  font-weight: 400;
+/* Tables styling - lighter font weights */
+table, .mat-mdc-table {
+  font-weight: var(--font-weight-light);
+  
+  th, .mat-mdc-header-cell {
+    font-weight: var(--font-weight-regular) !important;
+    color: #333;
+  }
+  
+  td, .mat-mdc-cell {
+    font-weight: var(--font-weight-light) !important;
+    color: #555;
+  }
+  
+  /* Slightly smaller font size */
+  font-size: 0.9rem;
 }
+
+/* Legend styling with lighter font weights */
+.legend-container, .chart-legend {
+  .legend-item {
+    .legend-label, .legend-text {
+      font-weight: var(--font-weight-light);
+    }
+  }
+}
+
+/* Make sidebar text lighter */
+.sidebar-nav {
+  .nav-item-content {
+    .nav-text {
+      font-weight: var(--font-weight-light) !important;
+    }
+    
+    /* Active items can be a bit more visible but still not too bold */
+    .active .nav-text {
+      font-weight: var(--font-weight-regular) !important;
+    }
+  }
+}
+
+/* Cards and section titles */
+.section-title, .section-info .section-title {
+  font-weight: var(--font-weight-regular) !important;
+}
+
+/* Status indicators and stats labels */
+.status-indicator, .stats-label, .stats-title {
+  font-weight: var(--font-weight-light) !important;
+}
+
+.stats-value {
+  font-weight: var(--font-weight-regular) !important;
+}
+
+/* Definition lists and other text components */
+.definitions-panel {
+  .definition-item {
+    h4 {
+      font-weight: var(--font-weight-regular);
+    }
+    
+    p {
+      font-weight: var(--font-weight-light);
+    }
+  }
+}
+
+/* Material components overrides */
+.mat-mdc-cell {
+  font-weight: var(--font-weight-light) !important;
+}
+
 /* Update Material styles for active elements to match logo color */
 .mat-mdc-button.mat-primary .mat-ripple-element,
 .mat-mdc-unelevated-button.mat-primary .mat-ripple-element,
@@ -167,6 +249,11 @@ app-root {
 .mat-mdc-tab.mat-mdc-tab-active .mdc-tab__text-label,
 .mat-mdc-tab-link.mat-mdc-tab-active .mdc-tab__text-label {
   color: var(--color-primary);
+  font-weight: var(--font-weight-regular) !important;
+}
+
+.mat-mdc-tab .mdc-tab__text-label {
+  font-weight: var(--font-weight-light) !important;
 }
 
 .mat-mdc-checkbox.mat-accent {
@@ -184,6 +271,11 @@ app-root {
 
 .mat-option.mat-selected:not(.mat-option-disabled) {
   color: var(--color-primary);
+  font-weight: var(--font-weight-regular) !important;
+}
+
+.mat-option {
+  font-weight: var(--font-weight-light) !important;
 }
 
 .mat-form-field-appearance-outline.mat-focused .mat-form-field-outline-thick {
@@ -213,36 +305,29 @@ app-root {
   --mdc-circular-progress-active-indicator-color: var(--color-primary);
 }
 
-table {
-  // Style général des tableaux
-  font-weight: 300; // Poids de police réduit
-  
-  th {
-    font-weight: 500; // En-têtes légèrement plus légers que par défaut
-    color: #333;
-  }
-  
-  td {
-    font-weight: 400; // Cellules avec poids normal
-    color: #555;
-  }
-  
-  // Vous pouvez également réduire légèrement la taille de police si nécessaire
-  font-size: 0.9rem;
-  
-  // Appliquez un style inline directement pour les cellules
-  .mat-cell, .mat-header-cell {
-    font-weight: inherit;
-  }
+/* Additional lighter font weights for form fields */
+.mat-mdc-form-field-label {
+  font-weight: var(--font-weight-light) !important;
 }
 
-// Pour cibler spécifiquement les tableaux Material
-.mat-table {
-  .mat-header-cell {
-    font-weight: 500 !important; // Assurez-vous que cela est appliqué
-  }
-  
-  .mat-cell {
-    font-weight: 400 !important;
-  }
+/* Buttons inside forms */
+.mat-mdc-form-field-subscript-wrapper {
+  font-weight: var(--font-weight-light) !important;
+}
+
+/* Menu items */
+.mat-mdc-menu-content, .mat-mdc-menu-item {
+  font-weight: var(--font-weight-light) !important;
+}
+
+/* All text inputs */
+input.mat-mdc-input-element, 
+textarea.mat-mdc-input-element,
+.mat-select-value-text {
+  font-weight: var(--font-weight-light) !important;
+}
+
+/* Snackbars & tooltips */
+.mat-mdc-snack-bar-label, .mat-tooltip {
+  font-weight: var(--font-weight-light) !important;
 }
