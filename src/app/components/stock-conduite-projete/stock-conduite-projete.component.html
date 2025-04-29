@@ -122,9 +122,9 @@
     
     <!-- Légende du graphique -->
     <div class="chart-legend">
-      <div class="legend-item" *ngFor="let zone of legendItems">
-        <div class="legend-color" [ngClass]="zone.class"></div>
-        <div class="legend-label">{{ zone.name }}</div>
+      <div class="legend-item" *ngFor="let legend of legendItems">
+        <div class="legend-color" [ngClass]="legend.class"></div>
+        <div class="legend-label">{{ legend.name }}</div>
       </div>
     </div>
   </div>
